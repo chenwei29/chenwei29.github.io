@@ -20,7 +20,7 @@
 <meta property="og:image" content="http://example.com/2021/05/15/springboot/image-20210530223007086.png">
 <meta property="og:image" content="http://example.com/2021/05/15/springboot/image-20210530223739907.png">
 <meta property="article:published_time" content="2021-05-15T07:25:30.000Z">
-<meta property="article:modified_time" content="2021-05-30T15:02:07.322Z">
+<meta property="article:modified_time" content="2021-06-21T08:14:14.345Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="学习">
 <meta property="article:tag" content="spring">
@@ -301,6 +301,41 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Nullable</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">invokeForRequest</span><span class="params">(NativeWebRequest request, <span class="meta">@Nullable</span> ModelAndViewContainer mavContainer, Object... providedArgs)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        Object[] args = <span class="keyword">this</span>.getMethodArgumentValues(request, mavContainer, providedArgs);</span><br><span class="line">        <span class="keyword">if</span> (logger.isTraceEnabled()) &#123;</span><br><span class="line">            logger.trace(<span class="string">&quot;Arguments: &quot;</span> + Arrays.toString(args));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.doInvoke(args);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 <p>​    开始 <code>this.getMethodArgumentValues(...)</code>开始获得方法中所有的参数.接下来就是执行反射部分的代码了.</p>
+<h3 id="拦截器"><a href="#拦截器" class="headerlink" title="拦截器"></a>拦截器</h3><p>​    要实现HandlerInterceptor接口,三个方法 : preHandle(在进入方法之前) postHandle(执行完目标方法之后) afterCompletion(请求完成以后)</p>
+<p>​    要在<code>@Configuration</code>注解所标注的类中进行注册</p>
+<h4 id="拦截器原理"><a href="#拦截器原理" class="headerlink" title="拦截器原理"></a>拦截器原理</h4><ol>
+<li>根据当前url请求,找到可以处理此请求的Handler以及handler的所有的拦截器,在DispatcherServlet类中的<code>doDispatch()</code>方法中</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!mappedHandler.applyPreHandle(processedRequest, response)) <span class="keyword">return</span>;</span><br><span class="line">				<span class="comment">// Actually invoke the handler.</span></span><br><span class="line">		mv = ha.handle(processedRequest, response, mappedHandler.getHandler());</span><br><span class="line">				<span class="keyword">if</span> (asyncManager.isConcurrentHandlingStarted())<span class="keyword">return</span></span><br></pre></td></tr></table></figure>
+
+<p>​    在此方法中,先是调用了<code>applyPreHandle()</code>方法,在此方法里面会循环对应的拦截器,进行拦截验证.里面的拦截器再调用perHandle方法.</p>
+<ol start="2">
+<li>先是<strong>顺序的执行</strong>所有拦截器的preHandle方法<pre><code>如果当前拦截器返回的true,则执行下一个拦截器
+如果当前的拦截器返的false,直接触发**倒序执行**所有的已经执行了的拦截器的afterCompleion
+</code></pre>
+</li>
+<li>如果任何一个拦截器返回false,直接跳出不执行目标方法.</li>
+<li>所有的拦截器都返回true,才执行目标方法.</li>
+<li><strong>倒序执行</strong>拦截器的postHandle方法.</li>
+<li>前面的步骤有任何的异常,都会直接触发拦截器的afterCompletion方法</li>
+</ol>
+<h3 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h3><p>在springboot中的文件上传还是用到了springmvc的功能,多了一个文件上传自动配置类-MultipartAutoConfiguration-MultipartProperties,并且自动配置好了StandardServletMultipartResolver文件上传解析器</p>
+<p>原理步骤:</p>
+<ul>
+<li>请求进来使用文件上传解析器判断并封装好文件上传请求</li>
+<li>参数解析器来解析请求中的文件内容封装成MultipartFIle</li>
+<li>将request中的文件信息封装成一个Map;MultiValueMap&lt;String,MultipartFIle&gt;</li>
+</ul>
+<h3 id="内嵌服务器"><a href="#内嵌服务器" class="headerlink" title="内嵌服务器"></a>内嵌服务器</h3><ul>
+<li>首先springboot应用启动发现当前是Web应用,会导入web场景包导入tomcat</li>
+<li>web应用会创建一个web版的ioc容器<code>ServletWebServerApplicationContext</code></li>
+<li><code>ServletWebServerApplicationContext</code>启动的时候会寻找<code>ServletWebServerFactory</code></li>
+<li>springboot底层有很多的webServer工厂: tomcat,jetty undertow,netty</li>
+<li>底层会有一个自动配置类.<code>ServletWebFactoryAutoConfiguration</code></li>
+<li><code>ServletWebFactoryAutoConfiguration</code>配置类,根据动态的判断系统中导入了那个Web服务器的包.(默认是tomcat包),容器中就有对用web服务器的ServletWebServerFactory</li>
+<li><code>TomcatServletWebServerFactory</code>创建除了tomcat服务器并且启动</li>
+<li>内嵌服务器,就是手动把启动服务器代码进行调动就行.</li>
+</ul>
 <h2 id="疑问点"><a href="#疑问点" class="headerlink" title="疑问点"></a>疑问点</h2><p> 什么时候使用@Component而不能用@Bean?</p>
 
       
@@ -542,7 +577,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">框架</a>
+                <a href="javascript:void(0)" class="js-tag color3">学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -550,11 +585,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">学习</a>
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">spring</a>
+                <a href="javascript:void(0)" class="js-tag color3">框架</a>
               </li>
             
             <div class="clearfix"></div>
