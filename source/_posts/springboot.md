@@ -420,11 +420,75 @@ Object returnValue = invokeForRequest(webRequest, mavContainer, providedArgs);
 
 ​	开始 `this.getMethodArgumentValues(...)`开始获得方法中所有的参数.接下来就是执行反射部分的代码了.
 
+### 拦截器
 
+​	要实现HandlerInterceptor接口,三个方法 : preHandle(在进入方法之前) postHandle(执行完目标方法之后) afterCompletion(请求完成以后)
 
+​	要在`@Configuration`注解所标注的类中进行注册
 
+#### 拦截器原理
 
+1. 根据当前url请求,找到可以处理此请求的Handler以及handler的所有的拦截器,在DispatcherServlet类中的`doDispatch()`方法中
 
+```java
+if (!mappedHandler.applyPreHandle(processedRequest, response)) return;
+				// Actually invoke the handler.
+		mv = ha.handle(processedRequest, response, mappedHandler.getHandler());
+				if (asyncManager.isConcurrentHandlingStarted())return
+```
+
+​	在此方法中,先是调用了`applyPreHandle()`方法,在此方法里面会循环对应的拦截器,进行拦截验证.里面的拦截器再调用perHandle方法.
+
+2. 先是**顺序的执行**所有拦截器的preHandle方法
+   	如果当前拦截器返回的true,则执行下一个拦截器
+   	如果当前的拦截器返的false,直接触发**倒序执行**所有的已经执行了的拦截器的afterCompleion
+3. 如果任何一个拦截器返回false,直接跳出不执行目标方法.
+4. 所有的拦截器都返回true,才执行目标方法.
+5. **倒序执行**拦截器的postHandle方法.
+6. 前面的步骤有任何的异常,都会直接触发拦截器的afterCompletion方法
+
+### 文件上传
+
+在springboot中的文件上传还是用到了springmvc的功能,多了一个文件上传自动配置类-MultipartAutoConfiguration-MultipartProperties,并且自动配置好了StandardServletMultipartResolver文件上传解析器
+
+原理步骤:
+
+- 请求进来使用文件上传解析器判断并封装好文件上传请求
+- 参数解析器来解析请求中的文件内容封装成MultipartFIle
+- 将request中的文件信息封装成一个Map;MultiValueMap<String,MultipartFIle>
+
+### 内嵌服务器
+
+- 首先springboot应用启动发现当前是Web应用,会导入web场景包导入tomcat
+- web应用会创建一个web版的ioc容器`ServletWebServerApplicationContext`
+- `ServletWebServerApplicationContext`启动的时候会寻找`ServletWebServerFactory`
+- springboot底层有很多的webServer工厂: tomcat,jetty undertow,netty
+- 底层会有一个自动配置类.`ServletWebFactoryAutoConfiguration`
+- `ServletWebFactoryAutoConfiguration`配置类,根据动态的判断系统中导入了那个Web服务器的包.(默认是tomcat包),容器中就有对用web服务器的ServletWebServerFactory
+- `TomcatServletWebServerFactory`创建除了tomcat服务器并且启动
+- 内嵌服务器,就是手动把启动服务器代码进行调动就行.
+
+#### 切换服务器
+
+在spring-boot-starter-web中排除掉tomcat服务器,再加上指定的服务器依赖即可.
+
+### 定制化Web
+
+一旦使用`@EnableWebMvc`将全面接管springmvc,所有的功能全由自己定制.
+
+使用`@EnableWebMvc`,会`@Import(DelegatingWebMvcConfiguration.class)`
+
+`@Import(DelegatingWebMvcConfiguration.class)`的作用
+
+- 把所有系统中的WebMvcConfigurer拿过来,所有功能的定制都是这些写configurer 合起来一起生效
+- 自动配置了一些底层的组件RequestMappingHandlerMapping等等,这些组件依赖的组件都是从容器中获取.
+- 只保证了springmvc的最基本的使用,不保证其他扩展配置
+
+如果使用了`@EnableWebMvc`那么就会默认导入`DelegatingWebMvcConfiguration.class`,而`WebMvcAutoConfiguration`要生效,里面的配置必须满足`@ConditionOnMissingBean(WebMvcConfigurationSupport.class)`,而`DelegatingWebMvcConfiguration.class`是继承`@ConditionOnMissingBean(WebMvcConfigurationSupport.class)`的,所以,当使用`@EnableWebMvc`时候,容器中有了`WebMvcConfigurationSupport.class`类型的组件.所以spring的`WebMvcAutoConfiguration`就不生效了
+
+#### 常用方式
+
+编写一个配置类+`@Bean`实现WebConfigurer来替换或者增加容器中的组件即可.
 
 ## 疑问点
 
