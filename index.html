@@ -725,6 +725,17 @@
 <li><code>TomcatServletWebServerFactory</code>创建除了tomcat服务器并且启动</li>
 <li>内嵌服务器,就是手动把启动服务器代码进行调动就行.</li>
 </ul>
+<h4 id="切换服务器"><a href="#切换服务器" class="headerlink" title="切换服务器"></a>切换服务器</h4><p>在spring-boot-starter-web中排除掉tomcat服务器,再加上指定的服务器依赖即可.</p>
+<h3 id="定制化Web"><a href="#定制化Web" class="headerlink" title="定制化Web"></a>定制化Web</h3><p>一旦使用<code>@EnableWebMvc</code>将全面接管springmvc,所有的功能全由自己定制.</p>
+<p>使用<code>@EnableWebMvc</code>,会<code>@Import(DelegatingWebMvcConfiguration.class)</code></p>
+<p><code>@Import(DelegatingWebMvcConfiguration.class)</code>的作用</p>
+<ul>
+<li>把所有系统中的WebMvcConfigurer拿过来,所有功能的定制都是这些写configurer 合起来一起生效</li>
+<li>自动配置了一些底层的组件RequestMappingHandlerMapping等等,这些组件依赖的组件都是从容器中获取.</li>
+<li>只保证了springmvc的最基本的使用,不保证其他扩展配置</li>
+</ul>
+<p>如果使用了<code>@EnableWebMvc</code>那么就会默认导入<code>DelegatingWebMvcConfiguration.class</code>,而<code>WebMvcAutoConfiguration</code>要生效,里面的配置必须满足<code>@ConditionOnMissingBean(WebMvcConfigurationSupport.class)</code>,而<code>DelegatingWebMvcConfiguration.class</code>是继承<code>@ConditionOnMissingBean(WebMvcConfigurationSupport.class)</code>的,所以,当使用<code>@EnableWebMvc</code>时候,容器中有了<code>WebMvcConfigurationSupport.class</code>类型的组件.所以spring的<code>WebMvcAutoConfiguration</code>就不生效了</p>
+<h4 id="常用方式"><a href="#常用方式" class="headerlink" title="常用方式"></a>常用方式</h4><p>编写一个配置类+<code>@Bean</code>实现WebConfigurer来替换或者增加容器中的组件即可.</p>
 <h2 id="疑问点"><a href="#疑问点" class="headerlink" title="疑问点"></a>疑问点</h2><p> 什么时候使用@Component而不能用@Bean?</p>
 
       
@@ -876,19 +887,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">工作</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">spring</a>
+                <a href="javascript:void(0)" class="js-tag color3">框架</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">框架</a>
+                <a href="javascript:void(0)" class="js-tag color3">学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
             
             <div class="clearfix"></div>
