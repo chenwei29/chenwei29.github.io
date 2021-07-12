@@ -490,6 +490,65 @@ if (!mappedHandler.applyPreHandle(processedRequest, response)) return;
 
 编写一个配置类+`@Bean`实现WebConfigurer来替换或者增加容器中的组件即可.
 
+### redis的整合
+
+​	首先导入依赖
+
+~~~java
+org.springframework.boot
+spring-boot-starter-data-redis
+~~~
+
+首先是对查看RedisAutoConfiguration 自动配置类，redisProperties属性类
+同时支持两个客户端一个是Lettuce，一个是Jdis
+
+自动注入了redisTemplate<Object,Object>,StringRedisTemplate<String,String>,底层使用这两种template即可进行操作redist
+
+### Junit的整合
+
+​	在springboot2.2.0之后的版本springboot开始引入了junit5作为单位单元测试默认库。
+
+​	现在junit5 分为三部分：
+
+- ​	JUnit platform：他是在JVM上启动测试框架的基础，不仅支持JUnit自制的测试引擎，而且其他的测试引擎也可以进行接入
+- ​	JUnit提供了Junit5的新的编程模型，是JUnit5的新特性的核心，内部包含了一个测试引擎，用于阿在JUnit platform中运行
+- ​	JUnit Vintage：由于Junit发展了多年，为了照顾老的项目，Junit Vintage提供了兼容Junit4和3的测试引擎
+
+
+注意：springboot2.4以上的版本移除了对Vintage的依赖，如果需要兼容需要自行引入依赖即可。
+
+
+
+### 指标监控
+
+​	我们每个微服务都可以快速引用获得生产级别的应用监控，审计等功能。
+
+​	导入依赖
+
+```java
+		<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+```
+
+开启后，springboot会开放两个接口，一个为/actuator/health，用来监控服务的健康情况，一个为/actuator/info，查看服务的详细信息。
+
+### profile功能
+
+​	为了多环境的适配，springboot简化了profile的功能.
+
+​	可以在配置文件中配置多个application-xxx.yml的文件.xxx代表着不同的环境.接下来可以在主配置文件中写上spring.profiles.active=xxx即可.
+
+​	配置规则:
+
+- 不带xxx后缀的配置文件为默认配置文件,永远都会加载.
+- 在默认配置文件中激活制定的不同环境的配置文件.
+- 默认配置语环境配置将会同时生效.
+- 如果有同名的冲突的,以带后缀的配置文件优先.
+- 可以在jar包处使用命令行的方式进行启动jar包  (命令行的优先级最高)
+  - java -jar xxx.jar --spring.profiles.active=xxx 来进行指定环境启动即可.
+
 ## 疑问点
 
  什么时候使用@Component而不能用@Bean?
