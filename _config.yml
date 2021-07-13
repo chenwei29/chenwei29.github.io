@@ -1,8 +1,8 @@
 title: Hexo
 subtitle: ''
-description: ''
+description: '博客'
 keywords: null
-author: John Doe
+author: 陈炜
 language: en
 timezone: ''
 url: http://example.com
@@ -54,7 +54,7 @@ meta_generator: true
 date_format: YYYY-MM-DD
 time_format: HH:mm:ss
 updated_option: mtime
-per_page: 10
+per_page: 5
 pagination_dir: page
 include: null
 exclude: null
