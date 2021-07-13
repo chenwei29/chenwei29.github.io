@@ -17,6 +17,26 @@
       <% } else { %>
         <%- post.content %>
       <% } %>
+	  <% if ((theme.essayending_type === 2 || (theme.essayending_type === 1 && post.essayending)) && !index){ %>
+       <% if  (!index){ %>
+         <div class="essayending">
+           <div>
+            <div style="text-align:center;color: #ccc;font-size:22px;">
+            <br/>
+            <br/>
+ -------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------
+            <br/>
+            <br/>
+             <br/>
+             <br/>
+            </div>
+           </div>
+         </div>
+         <% } else {%>
+         <div class="essayending" hidden="hidden"></div>
+       <% } %>
+       
+  <% } %>
 
       <% if ((theme.reward_type === 2 || (theme.reward_type === 1 && post.reward)) && !index){ %>
         <div class="page-reward">
