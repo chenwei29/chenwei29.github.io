@@ -2,25 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 5.4.0">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favorite.jpg">
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favorite.jpg">
-  <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favorite.jpg">
-  <link rel="mask-icon" href="/assets/img/favorite.jpg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/touxiang.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/touxiang.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/touxiang.jpg">
+  <link rel="mask-icon" href="/images/touxiang.jpg" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
 
 
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  
+  <link rel="stylesheet" href="/lib/animate-css/animate.min.css">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"8.0.0-rc.5","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false};
+  </script>
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="springboot简介 约定大于配置 : 按约定编程,是一种软件设计范式,目的是减少开发人员减少做决定的数量(就是规定制定文件放在什么位置).  springboot中的约定有 : Maven的目录结构.默认resource文件夹存放配置文件.默认生成的编译后的代码都在target文件夹下.springboot默认的配置文件为:application开头等等一些.  含有丰富的start,拿来即">
+  <meta name="description" content="springboot简介 约定大于配置 : 按约定编程,是一种软件设计范式,目的是减少开发人员减少做决定的数量(就是规定制定文件放在什么位置).  springboot中的约定有 : Maven的目录结构.默认resource文件夹存放配置文件.默认生成的编译后的代码都在target文件夹下.springboot默认的配置文件为:application开头等等一些.  含有丰富的start,拿来即">
 <meta property="og:type" content="article">
 <meta property="og:title" content="springboot">
 <meta property="og:url" content="http://example.com/2021/05/15/springboot/index.html">
@@ -39,33 +41,73 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/2021/05/15/springboot/OH@P%5DI3%25KDUXH%7DH54%25%7BHUUN.png">
 
-
 <link rel="canonical" href="http://example.com/2021/05/15/springboot/">
 
 
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2021/05/15/springboot/","path":"2021/05/15/springboot/","title":"springboot"}</script>
-
-<script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>springboot | 博客</title>
+  <title>springboot | 博客</title>
   
 
 
 
 
+
+
   <noscript>
-    <link rel="stylesheet" href="/css/noscript.css">
-  </noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
-  <div class="headband"></div>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
 
-  <main class="main">
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
+    <main class="main">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    <div class="toggle" aria-label="Toggle navigation bar">
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
@@ -91,13 +133,47 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu">
-        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
-        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
-        <li class="menu-item menu-item-schedule"><a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>Schedule</a></li>
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">4</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">0</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">10</span></a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>Schedule</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>Commonweal 404</a>
+
+  </li>
   </ul>
 </nav>
 
@@ -105,9 +181,9 @@
 
 
 </div>
-        
+          
   
-  <div class="toggle sidebar-toggle" role="button">
+  <div class="toggle sidebar-toggle">
     <span class="toggle-line"></span>
     <span class="toggle-line"></span>
     <span class="toggle-line"></span>
@@ -125,20 +201,20 @@
         </li>
       </ul>
 
-      <div class="sidebar-panel-container">
-        <!--noindex-->
-        <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#springboot%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">springboot简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B"><span class="nav-number">2.</span> <span class="nav-text">快速上手</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">3.</span> <span class="nav-text">微服务和分布式的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#springboot%E6%B3%A8%E8%A7%A3"><span class="nav-number">4.</span> <span class="nav-text">springboot注解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#springboot%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE"><span class="nav-number">5.</span> <span class="nav-text">springboot自动配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#springboot%E7%9A%84web%E5%BC%80%E5%8F%91"><span class="nav-number">6.</span> <span class="nav-text">springboot的web开发</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E8%B5%84%E6%BA%90%E7%9B%AE%E5%BD%95"><span class="nav-number">6.0.1.</span> <span class="nav-text">静态资源资源目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E8%AE%BF%E9%97%AE%E7%9A%84%E5%89%8D%E7%BC%80"><span class="nav-number">6.0.2.</span> <span class="nav-text">静态资源访问的前缀</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E9%85%8D%E7%BD%AE%E5%8E%9F%E7%90%86"><span class="nav-number">6.0.3.</span> <span class="nav-text">静态资源配置原理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E7%B1%BB%E5%8F%AA%E6%9C%89%E4%B8%80%E4%B8%AA%E6%9C%89%E5%8F%82%E6%9E%84%E9%80%A0%E5%99%A8"><span class="nav-number">6.0.3.1.</span> <span class="nav-text">配置类只有一个有参构造器</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#restful%E9%A3%8E%E6%A0%BC"><span class="nav-number">6.0.4.</span> <span class="nav-text">restful风格</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B7%E6%B1%82%E6%98%A0%E5%B0%84%E5%8E%9F%E7%90%86"><span class="nav-number">6.0.5.</span> <span class="nav-text">请求映射原理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#cookie%E8%A2%AB%E7%A6%81%E7%94%A8%E4%BA%86-session%E9%87%8C%E9%9D%A2%E7%9A%84%E5%86%85%E5%AE%B9%E6%80%8E%E4%B9%88%E8%8E%B7%E5%BE%97"><span class="nav-number">6.0.5.1.</span> <span class="nav-text">cookie被禁用了,session里面的内容怎么获得?</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B"><span class="nav-number">6.0.6.</span> <span class="nav-text">请求流程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%A6%E6%88%AA%E5%99%A8"><span class="nav-number">6.1.</span> <span class="nav-text">拦截器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8B%A6%E6%88%AA%E5%99%A8%E5%8E%9F%E7%90%86"><span class="nav-number">6.1.1.</span> <span class="nav-text">拦截器原理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="nav-number">6.2.</span> <span class="nav-text">文件上传</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E5%B5%8C%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">6.3.</span> <span class="nav-text">内嵌服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%87%E6%8D%A2%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">6.3.1.</span> <span class="nav-text">切换服务器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E5%88%B6%E5%8C%96Web"><span class="nav-number">6.4.</span> <span class="nav-text">定制化Web</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="nav-number">6.4.1.</span> <span class="nav-text">常用方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#redis%E7%9A%84%E6%95%B4%E5%90%88"><span class="nav-number">6.5.</span> <span class="nav-text">redis的整合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Junit%E7%9A%84%E6%95%B4%E5%90%88"><span class="nav-number">6.6.</span> <span class="nav-text">Junit的整合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E6%A0%87%E7%9B%91%E6%8E%A7"><span class="nav-number">6.7.</span> <span class="nav-text">指标监控</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#profile%E5%8A%9F%E8%83%BD"><span class="nav-number">6.8.</span> <span class="nav-text">profile功能</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%96%91%E9%97%AE%E7%82%B9"><span class="nav-number">7.</span> <span class="nav-text">疑问点</span></a></li></ol></div>
-        </div>
-        <!--/noindex-->
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#springboot%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">springboot简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B"><span class="nav-number">2.</span> <span class="nav-text">快速上手</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">3.</span> <span class="nav-text">微服务和分布式的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#springboot%E6%B3%A8%E8%A7%A3"><span class="nav-number">4.</span> <span class="nav-text">springboot注解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#springboot%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE"><span class="nav-number">5.</span> <span class="nav-text">springboot自动配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#springboot%E7%9A%84web%E5%BC%80%E5%8F%91"><span class="nav-number">6.</span> <span class="nav-text">springboot的web开发</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E8%B5%84%E6%BA%90%E7%9B%AE%E5%BD%95"><span class="nav-number">6.0.1.</span> <span class="nav-text">静态资源资源目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E8%AE%BF%E9%97%AE%E7%9A%84%E5%89%8D%E7%BC%80"><span class="nav-number">6.0.2.</span> <span class="nav-text">静态资源访问的前缀</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E9%85%8D%E7%BD%AE%E5%8E%9F%E7%90%86"><span class="nav-number">6.0.3.</span> <span class="nav-text">静态资源配置原理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E7%B1%BB%E5%8F%AA%E6%9C%89%E4%B8%80%E4%B8%AA%E6%9C%89%E5%8F%82%E6%9E%84%E9%80%A0%E5%99%A8"><span class="nav-number">6.0.3.1.</span> <span class="nav-text">配置类只有一个有参构造器</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#restful%E9%A3%8E%E6%A0%BC"><span class="nav-number">6.0.4.</span> <span class="nav-text">restful风格</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B7%E6%B1%82%E6%98%A0%E5%B0%84%E5%8E%9F%E7%90%86"><span class="nav-number">6.0.5.</span> <span class="nav-text">请求映射原理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#cookie%E8%A2%AB%E7%A6%81%E7%94%A8%E4%BA%86-session%E9%87%8C%E9%9D%A2%E7%9A%84%E5%86%85%E5%AE%B9%E6%80%8E%E4%B9%88%E8%8E%B7%E5%BE%97"><span class="nav-number">6.0.5.1.</span> <span class="nav-text">cookie被禁用了,session里面的内容怎么获得?</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B"><span class="nav-number">6.0.6.</span> <span class="nav-text">请求流程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%A6%E6%88%AA%E5%99%A8"><span class="nav-number">6.1.</span> <span class="nav-text">拦截器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8B%A6%E6%88%AA%E5%99%A8%E5%8E%9F%E7%90%86"><span class="nav-number">6.1.1.</span> <span class="nav-text">拦截器原理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="nav-number">6.2.</span> <span class="nav-text">文件上传</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E5%B5%8C%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">6.3.</span> <span class="nav-text">内嵌服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%87%E6%8D%A2%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">6.3.1.</span> <span class="nav-text">切换服务器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E5%88%B6%E5%8C%96Web"><span class="nav-number">6.4.</span> <span class="nav-text">定制化Web</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="nav-number">6.4.1.</span> <span class="nav-text">常用方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#redis%E7%9A%84%E6%95%B4%E5%90%88"><span class="nav-number">6.5.</span> <span class="nav-text">redis的整合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Junit%E7%9A%84%E6%95%B4%E5%90%88"><span class="nav-number">6.6.</span> <span class="nav-text">Junit的整合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E6%A0%87%E7%9B%91%E6%8E%A7"><span class="nav-number">6.7.</span> <span class="nav-text">指标监控</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#profile%E5%8A%9F%E8%83%BD"><span class="nav-number">6.8.</span> <span class="nav-text">profile功能</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%96%91%E9%97%AE%E7%82%B9"><span class="nav-number">7.</span> <span class="nav-text">疑问点</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
 
-        <div class="site-overview-wrap sidebar-panel">
-          <div class="site-overview">
-            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="cw"
+      src="/images/touxiang.jpg">
   <p class="site-author-name" itemprop="name">cw</p>
   <div class="site-description" itemprop="description">博客</div>
 </div>
-<div class="site-state-wrap site-overview-item animated">
+<div class="site-state-wrap animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
@@ -155,51 +231,42 @@
       </div>
   </nav>
 </div>
-  <div class="links-of-author site-overview-item animated">
-      <span class="links-of-author-item">
-        <a href="skype:yourname?call|chat" title="WeChat → skype:yourname?call|chat" rel="noopener" target="_blank"><i class="fab fa-WeChat fa-fw"></i>WeChat</a>
-      </span>
-  </div>
 
 
 
-          </div>
-        </div>
-      </div>
+      </section>
     </div>
   </aside>
-  <div class="sidebar-dimmer"></div>
+  <div id="sidebar-dimmer"></div>
 
 
-    </header>
+      </header>
 
-    
-  <div class="back-to-top" role="button" aria-label="Back to top">
+      
+  <div class="back-to-top">
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
-  <div class="reading-progress-bar"></div>
 
 <noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
 </noscript>
 
 
-    <div class="main-inner post posts-expand">
+      <div class="main-inner">
+        
 
+        <div class="content post posts-expand">
+          
 
+    
   
-
-
-<div class="post-block">
   
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/15/springboot/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/touxiang.jpg">
       <meta itemprop="name" content="cw">
       <meta itemprop="description" content="博客">
     </span>
@@ -207,31 +274,31 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="博客">
     </span>
+
+    
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           springboot
         </h1>
 
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2021-05-15 15:25:30" itemprop="dateCreated datePublished" datetime="2021-05-15T15:25:30+08:00">2021-05-15</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-07-14 09:12:42" itemprop="dateModified" datetime="2021-07-14T09:12:42+08:00">2021-07-14</time>
-      </span>
+              <time title="Created: 2021-05-15 15:25:30" itemprop="dateCreated datePublished" datetime="2021-05-15T15:25:30+08:00">2021-05-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-07-14 09:12:42" itemprop="dateModified" datetime="2021-07-14T09:12:42+08:00">2021-07-14</time>
+              </span>
 
-  
-</div>
+          
 
         </div>
       </header>
@@ -447,7 +514,7 @@
     
     
 
-    <footer class="post-footer">
+      <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag"># 学习</a>
               <a href="/tags/spring/" rel="tag"># spring</a>
@@ -455,32 +522,60 @@
 
         
 
-          <div class="post-nav">
-            <div class="post-nav-item">
-            </div>
-            <div class="post-nav-item">
-                <a href="/2021/05/15/%E6%B3%A8%E8%A7%A3Bean%E5%92%8CComponent%E7%9A%84%E5%8C%BA%E5%88%AB/" rel="next" title="注解Bean和Component的区别">
-                  注解Bean和Component的区别 <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
-    </footer>
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2021/05/15/%E6%B3%A8%E8%A7%A3Bean%E5%92%8CComponent%E7%9A%84%E5%8C%BA%E5%88%AB/" rel="next" title="注解Bean和Component的区别">
+      注解Bean和Component的区别 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
   </article>
-</div>
+  
+  
+  
 
 
 
+        </div>
+        
 
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
+      </div>
+    </main>
 
-</div>
-  </main>
+    <footer class="footer">
+      <div class="footer-inner">
+        
 
-  <footer class="footer">
-    <div class="footer-inner">
-
+        
 
 <div class="copyright">
+  
   &copy; 
   <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
@@ -488,26 +583,52 @@
   </span>
   <span class="author" itemprop="copyrightHolder">cw</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
   </div>
 
-    </div>
-  </footer>
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
 
   
-  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
 
   
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
   
 
-
-
-
+  
 
 </body>
 </html>
