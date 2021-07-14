@@ -367,7 +367,9 @@ public class ReadWriteLockThread {
 
 ​	多个线程之间实现通讯是要用到wait和notify.
 
-​	wait: 会让当前的线程变成阻塞状态,同时会释放锁
+​	wait: 会让当前的线程变成阻塞状态,会放弃CPU的执行权,同时会释放锁,防止死锁
+
+​	notify:唤醒锁池阻塞的线程,从就绪到运行状态
 
 ![image-20210713232828933](Java多线程初始/image-20210713232828933.png)
 
@@ -505,18 +507,28 @@ while (true) {
 ```java
 		 while (true) {
                synchronized (res){
-                   res.notify();
-                   System.out.println(res);
-                   try {
-                       res.wait();
-                   } catch (InterruptedException e) {
-                       e.printStackTrace();
+                   if (!res.isFlag()){
+                       try {
+                           res.wait();
+                       } catch (InterruptedException e) {
+                           e.printStackTrace();
+                       }
                    }
+                   System.out.println(res);
+                   res.setFlag(false);
+                  res.notify();
                }
             }
 -------------------------------------
     		while (true) {
                 synchronized (res){
+                    if (res.isFlag()){
+                        try {
+                            res.wait();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
                     if (count == 0) {
                         res.setSex("男");
                         res.setUserName("cw");
@@ -524,14 +536,53 @@ while (true) {
                         res.setSex("女");
                         res.setUserName("xl");
                     }
-                    res.notify();
                     count = (count + 1) % 2;
-                    try {
-                        res.wait();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                    res.setFlag(true);
+                    res.notify();
                 }
             }
+```
+
+​	调用wait和notify方法的时候,要确定要用锁对象来进行调用wait和notify方法.比如在上面的代码块中,res就是锁对象,所以要用res来进行调用方法.
+
+#### 15. wait和sleep的区别
+
+​	都是可以让当前线程变成阻塞状态,但是wait可以释放锁,sleep不释放锁.
+
+​	为什么wait需要放在Object类中, 而不是Thread类中?
+
+​	因为synchronized的锁可以使用任意的对象作为锁,所以要让每个锁对象都要拥有此方法.
+
+#### 16. 多线程join的使用
+
+​	使用join可以保证线程的顺序问题,比如现在有A,B两个线程,如果在A线程中调用B.join()方法,那么会使A线程阻塞,使B线程运行完成之后才能继续运行.
+
+​	join底层用到了wait()方法,将当前线程变成阻塞状态
+
+```java
+public final synchronized void join(long millis)
+    throws InterruptedException {
+        long base = System.currentTimeMillis();
+        long now = 0;
+
+        if (millis < 0) {
+            throw new IllegalArgumentException("timeout value is negative");
+        }
+
+        if (millis == 0) {
+            while (isAlive()) {
+                wait(0);
+            }
+        } else {
+            while (isAlive()) {
+                long delay = millis - now;
+                if (delay <= 0) {
+                    break;
+                }
+                wait(delay);
+                now = System.currentTimeMillis() - base;
+            }
+        }
+    }
 ```
 
