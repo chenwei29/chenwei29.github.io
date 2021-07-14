@@ -28,7 +28,7 @@
 <meta property="og:description" content="两者作用 @Bean注解在方法上,告诉spring这个方法会放回一个对象,将这个对应托管在容器中.在方法中会有该Bean对象产生的实例逻辑  @Component注解表面这个类会作为一个组件类，并且告诉spring要为这个类创建一个bean放在容器中. 两个的差别 相同点：两者的结果都是为spring容器注册Bean.  不同点：@Component 通常是通过类路径扫描来自动侦测以及自动装配到S">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-05-15T07:31:40.000Z">
-<meta property="article:modified_time" content="2021-07-13T01:17:59.620Z">
+<meta property="article:modified_time" content="2021-07-14T01:13:23.930Z">
 <meta property="article:author" content="cw">
 <meta property="article:tag" content="学习">
 <meta property="article:tag" content="spring">
@@ -222,7 +222,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-07-13 09:17:59" itemprop="dateModified" datetime="2021-07-13T09:17:59+08:00">2021-07-13</time>
+        <time title="Modified: 2021-07-14 09:13:23" itemprop="dateModified" datetime="2021-07-14T09:13:23+08:00">2021-07-14</time>
       </span>
 
   
@@ -239,7 +239,9 @@
 <p> @Component注解表面这个类会作为一个组件类，并且告诉spring要为这个类创建一个bean放在容器中.</p>
 <h2 id="两个的差别"><a href="#两个的差别" class="headerlink" title="两个的差别"></a>两个的差别</h2><p> 相同点：两者的结果都是为spring容器注册Bean.</p>
 <p> 不同点：@Component 通常是通过类路径扫描来自动侦测以及自动装配到Spring容器中。它与Bean之间为隐式关系即每个类就是一个bean。</p>
-<p>　　　　@Bean 注解通常是我们在标有该注解的方法中定义产生这个bean的逻辑。它是显式声明单个bean，而不是让Spring像上面那样自动执行它。它将bean的声明与类定义分离，并允许您精确地创建和配置bean</p>
+<span id="more"></span>
+
+<p>　　@Bean 注解通常是我们在标有该注解的方法中定义产生这个bean的逻辑。它是显式声明单个bean，而不是让Spring像上面那样自动执行它。它将bean的声明与类定义分离，并允许您精确地创建和配置bean</p>
 <p> @Component （@Controller @Service @Respository）作用于类上，只有在我们的SpringBoot应用程序启用了组件扫描并且包含了被注解的类时才有效。通过组件扫描，Spring将扫描整个类路径，并将所有@Component注释类添加到Spring Context，这里有的不足就是会把整个类当成bean注册到spring 容器上，如果这个类中并不是所有方法都需要注册为bean的话，会出现不需要的方法都注册成为bean，这时候必须确保这些不需要的方法也能注册为bean或者在扫描中加filter 过滤这些不需要的bean,否者spring将无法成功启动。</p>
 <p>@Bean相对来说就更加灵活了，它可以独立加在方法上，按需注册到spring容器，而且如果你要用到第三方类库里面某个方法的时候，你就只能用@Bean把这个方法注册到spring容器，因为用@Component你需要配置组件扫描到这个第三方类路径而且还要在别人源代码加上这个注解，很明显是不现实的。</p>
 <h2 id="两者的使用情况"><a href="#两者的使用情况" class="headerlink" title="两者的使用情况"></a>两者的使用情况</h2><p> @Bean 当你没有源代码的时候，想要使用该组件，就可以用@Bean注解，放返回对应的对象到容器中。又比如，你所需要的对象，必须需要其他的一些依赖进行注入的时候，或者一些其他的参数来进行注入的时候，就可以使用@Bean注解的方式，来进行获取组件。</p>

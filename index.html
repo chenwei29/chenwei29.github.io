@@ -216,7 +216,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-07-13 10:33:35" itemprop="dateModified" datetime="2021-07-13T10:33:35+08:00">2021-07-13</time>
+        <time title="Modified: 2021-07-14 09:12:11" itemprop="dateModified" datetime="2021-07-14T09:12:11+08:00">2021-07-14</time>
       </span>
 
   
@@ -240,45 +240,14 @@
 <li>Reader 字符输入流</li>
 <li>Writer 字符输出流</li>
 </ul>
-<p>—以上的流都是最为开始的流,全是抽象类</p>
-<p>接下来会有16个所包括的流:</p>
-<p>文件流:</p>
-<ul>
-<li>FileInputStream</li>
-<li>FIleOutputStream</li>
-<li>InputSteamReader</li>
-<li>OutputSteamWriter</li>
-</ul>
-<p>转换流:</p>
-<ul>
-<li>FileReader</li>
-<li>FIleWriter</li>
-</ul>
-<p>缓冲流:</p>
-<ul>
-<li>BufferedReader</li>
-<li>BufferedWriter</li>
-<li>BufferedInputStream</li>
-<li>BufferedOutputStream</li>
-</ul>
-<p>数据流:</p>
-<ul>
-<li>DataInputSteam</li>
-<li>DataOutputSteam</li>
-</ul>
-<p>对象流:</p>
-<ul>
-<li>ObjectInputStream</li>
-<li>ObjectOutputStream</li>
-</ul>
-<p>标准输出流:</p>
-<ul>
-<li>PrintWriter</li>
-<li>PrintSteam</li>
-</ul>
-<p>​    </p>
-<p>​    </p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/07/08/JavaIO%E6%B5%81%E5%88%9D%E5%A7%8B/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -335,7 +304,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-07-13 09:23:03" itemprop="dateModified" datetime="2021-07-13T09:23:03+08:00">2021-07-13</time>
+        <time title="Modified: 2021-07-14 09:10:16" itemprop="dateModified" datetime="2021-07-14T09:10:16+08:00">2021-07-14</time>
       </span>
 
   
@@ -357,77 +326,14 @@
 <p>​        3) 支付异步回调</p>
 <p>​        4) 对我们后端接口中比较耗时间的代码都可以采用异步实现.</p>
 <p>​        目的: 就是为了提高对HTTP协议的响应</p>
-<h4 id="2-并发和并行的区别"><a href="#2-并发和并行的区别" class="headerlink" title="2. 并发和并行的区别"></a>2. 并发和并行的区别</h4><ul>
-<li>并发是一个处理器同时处理多个任务</li>
-<li>并行是多个处理器或者是多核的处理器同时处理多个不同的任务</li>
-</ul>
-<p>就好比是,并发是一个人同时吃三碗饭,并行就三个人同时吃三碗饭</p>
-<h4 id="3-对于单核的cpu来说-可以做到真正的多线程并发吗-什么是真正的多线程并发-多线程是开的越多越好吗"><a href="#3-对于单核的cpu来说-可以做到真正的多线程并发吗-什么是真正的多线程并发-多线程是开的越多越好吗" class="headerlink" title="3. 对于单核的cpu来说,可以做到真正的多线程并发吗?什么是真正的多线程并发?多线程是开的越多越好吗?"></a>3. 对于单核的cpu来说,可以做到真正的多线程并发吗?什么是真正的多线程并发?多线程是开的越多越好吗?</h4><p>​    A线程执行A,B线程执行B.A不会影响B,B也不会影响A,这就叫做真正的多线程并发.</p>
-<p>​    单核的cpu不能狗做到真正的多线程并发,但是可以做到一种多线程并发的感觉.其实对于单核的cpu来说,在某一个时间点上实际只能处理一件事情.</p>
-<p>​    如果在服务器上频繁的开启线程,会影响到服务器的性能,如果是项目比较小的话,可以采用多线程实现异步,如果是项目比较大或者高并发的情况下建议使用MQ实现异步.</p>
-<h4 id="4-Java创建线程的方式-简单的"><a href="#4-Java创建线程的方式-简单的" class="headerlink" title="4. Java创建线程的方式(简单的)"></a>4. Java创建线程的方式(简单的)</h4><ul>
-<li>编写一个类,继承Tread方法即可.</li>
-<li>编写一个类,实现Runable接口,然后new Tread(编写的类)即可.</li>
-<li>再调用start方法即可.</li>
-<li>如果直接调用线程类的run方法,就不会启动方法,就等于是调用一个普通的方法</li>
-</ul>
-<p>多线程创建小例子:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyThread</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;开始线程!&quot;</span>);</span><br><span class="line">        <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;自定义线程1 -&gt; &quot;</span> + i );</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;<span class="number">10</span> ; i++) &#123;</span><br><span class="line">                    System.out.println(<span class="string">&quot;自定义线程2 -&gt; &quot;</span>+i);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).start();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;<span class="number">10</span> ; i++) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;main线程-&gt; &quot;</span> +i);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;主线程结束!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="5-Java创建线程的方式-补充"><a href="#5-Java创建线程的方式-补充" class="headerlink" title="5. Java创建线程的方式(补充)"></a>5. Java创建线程的方式(补充)</h4><ul>
-<li>Callable接口,可以带返回结果的线程 底层原理就是wait和notify包装而成的 </li>
-<li>线程池 四种实现方式,但是alibaba官方文档不推荐使用</li>
-<li>利用框架如spring提供异步注解<code>@Asyn</code></li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CallableThread</span> <span class="keyword">implements</span> <span class="title">Callable</span>&lt;<span class="title">String</span>&gt; </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        Thread.sleep(<span class="number">3000</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Callable实现多线程的创建,并且有返回值!&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//callable接口是有返回值的</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ExecutionException, InterruptedException </span>&#123;</span><br><span class="line">        FutureTask&lt;String&gt; futureTask = <span class="keyword">new</span> FutureTask&lt;&gt;(<span class="keyword">new</span> CallableThread());</span><br><span class="line">        <span class="keyword">new</span> Thread(futureTask).start();</span><br><span class="line">        <span class="comment">//必须要等待线程结束完成,才能获取到返回值;</span></span><br><span class="line">        <span class="comment">//相当于如果需要获取返回值,那么就是一个类似单线程,如果不要返回值,才会是类似多线程的样子</span></span><br><span class="line">        <span class="comment">//并且如果有返回值,将会堵塞接下来的代码,使接下来的代码一起等待线程结束,再从上往下执行</span></span><br><span class="line">        System.out.println(futureTask.get());</span><br><span class="line">        System.out.println(<span class="string">&quot;主线程完毕!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//线程池的使用</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadPool</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//线程池的核心就是帮助我们做复用机制.</span></span><br><span class="line">        ExecutorService executorService = Executors.newCachedThreadPool();</span><br><span class="line">        executorService.execute(()-&gt;&#123;</span><br><span class="line">            System.out.println(Thread.currentThread().getName()+<span class="string">&quot;我是线程池!!&quot;</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>使用<code>@Async</code>实现异步</p>
-<p>controller:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringAsync</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Resource</span></span><br><span class="line">    <span class="keyword">private</span> AsyncManage asyncManage;</span><br><span class="line">    <span class="meta">@GetMapping(&quot;/springAsync&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">springAsync</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        asyncManage.print();</span><br><span class="line">        <span class="comment">//做查询操作</span></span><br><span class="line">        Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;登录成功!&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>@Async</code>无返回值实现:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AsyncManage</span></span>&#123;</span><br><span class="line">    <span class="meta">@Async</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        print1();</span><br><span class="line">        print2();</span><br><span class="line">        print3();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print1</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;打印日志!&quot;</span>);</span><br><span class="line">        Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print2</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;发送邮件!&quot;</span>);</span><br><span class="line">        Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print3</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;发送短信!&quot;</span>);</span><br><span class="line">        Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>@Async</code>有返回值实现(利用Callable):</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Async</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Future&lt;String&gt; <span class="title">printString</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        print1();</span><br><span class="line">        print2();</span><br><span class="line">        print3();</span><br><span class="line">        <span class="keyword">return</span>  <span class="keyword">new</span> AsyncResult&lt;&gt;(<span class="string">&quot;有返回值的异步处理已完成!&quot;</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>​    在不访问其返回结果的时候就是异步处理,访问其结果的就是单线程处理的感觉</p>
-<p>有几个限制：</p>
-<ul>
-<li><p>两个方法都在同一个类里面，只是一个方法调用另一个异步方法，不生效。</p>
-<p>解决方法：拆分两个方法，将异步方法单独放在一个类里面，然后再去调用就解决了。</p>
-</li>
-<li><p>有接口方法的实现类里的注解不生效.</p>
-<p>解决方法：在实现类中调用一个没有接口的类才可以。</p>
-</li>
-<li><p><code>@SpringBootApplication</code>启动类当中需要添加<code>@EnableAsync</code>注解。</p>
-<p>异步方法使用注解<code>@Async</code>的返回值只能为void或者Future。</p>
-</li>
-</ul>
-<h4 id="6-用户线程和守护线程的区别"><a href="#6-用户线程和守护线程的区别" class="headerlink" title="6. 用户线程和守护线程的区别"></a>6. 用户线程和守护线程的区别</h4><p>区别:</p>
-<ul>
-<li>用户线程,当我们主线程停止之后,用户线程不会随着主线程停止.</li>
-<li> 守护线程,当我们主线程停止之后,守护线程会随着主线程停止.</li>
-</ul>
-<p>守护线程的使用场景</p>
-<ul>
-<li>GC线程,垃圾回收</li>
-</ul>
-<p>Java默认情况创建的线程都是用户线程,设置守护线程的方法:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Thread.setDaemon(<span class="keyword">true</span>);</span><br></pre></td></tr></table></figure>
-
-<h4 id="7-停止线程"><a href="#7-停止线程" class="headerlink" title="7. 停止线程"></a>7. 停止线程</h4><p> 不建议使用stop方法停止线程,因为它底层使用强制停止线程,如果代码没有执行完毕的情况下也是强行停止.可以使用编码知识,例如判断条件为false或者true来进行判断执行,停止线程只用改成false即可.</p>
-<h4 id="8-线程的生命周期"><a href="#8-线程的生命周期" class="headerlink" title="8. 线程的生命周期"></a>8. 线程的生命周期</h4><ul>
-<li>新建状态 —– 调用start方法</li>
-<li>就绪状态 —– 又叫可运行状态,具有抢夺CPU时间片的权利(执行权)</li>
-<li>运行状态 —– run方法的执行标志着线程开始进入运行状态</li>
-<li>阻塞状态 —– 当遇到阻塞时间(sleep方法等),此时线程会进入阻塞状态,处于阻塞状态会放弃当前占有的CPU时间片,结束后回到就绪状态</li>
-<li>死亡状态</li>
-</ul>
-<p>​    </p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/07/08/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%88%9D%E5%A7%8B/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -554,7 +460,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-07-13 09:17:59" itemprop="dateModified" datetime="2021-07-13T09:17:59+08:00">2021-07-13</time>
+        <time title="Modified: 2021-07-14 09:13:11" itemprop="dateModified" datetime="2021-07-14T09:13:11+08:00">2021-07-14</time>
       </span>
 
   
@@ -581,32 +487,14 @@
 </li>
 <li>比较重量级(需要依赖于spring,需要引入很多的依赖.)</li>
 </ul>
-<p>shiro是Apache旗下的轻量级权限控制框架,shiro的特点:</p>
-<ul>
-<li>轻量级(不依赖于其他依赖,启动起来,服务也比较少)</li>
-<li>通用性<ul>
-<li>好处 :不局限于Web环境,可以脱离Web环境使用</li>
-<li>坏处: 在Web环境下一些特定的需求需要手动编码定制.</li>
-</ul>
-</li>
-</ul>
-<p>总结:</p>
-<p>​    springsecurity发展了很久,但是使用的不多,而且在SSM中整个springsecurity是比较麻烦的操作,所以虽然springsecurity功能强大,但是使用的没有shiro多,对于大部门的项目来说,shiro的功能足够使用了,自动有了springboot之后,提供了自动配置化方案,可以使用更少的配置来使用springsecurity.因此,一般来说,常见的安全管理技术栈的组合为:</p>
-<ul>
-<li>SSM+shiro</li>
-<li>springboot/springcloud + springsecurity</li>
-</ul>
-<p>以上无论怎么组合都是可行的,只是推荐而已.</p>
-<h2 id="入门案例"><a href="#入门案例" class="headerlink" title="入门案例"></a>入门案例</h2><p>简单做一个简单的入门案例:</p>
-<ol>
-<li><p>创建一个springboot工程</p>
-</li>
-<li><p>引入相关的依赖</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-security<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
-<li><p>编写controller进行测试.</p>
-</li>
-</ol>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/07/07/springsercurity/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -663,7 +551,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-07-13 09:17:59" itemprop="dateModified" datetime="2021-07-13T09:17:59+08:00">2021-07-13</time>
+        <time title="Modified: 2021-07-14 09:12:34" itemprop="dateModified" datetime="2021-07-14T09:12:34+08:00">2021-07-14</time>
       </span>
 
   
@@ -678,7 +566,14 @@
     <div class="post-body" itemprop="articleBody">
           <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>​    Nginx是一个高性能的HTTP和反向代理web服务器.特点是占用内存少,并发能力强</p>
 <h3 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h3><p>​    反向代理,其实客户端是对代理没有感知的,客户端并不需要任何的配置就可以访问,只需要将请求发送到反向代理服务器,由反向代理服务器去选择目标服务器获取数据后,返回给客户端,此时反向代理服务器和目标服务器就是一个服务器,暴露的是代理服务器的地址,隐藏了真实服务器的ip地址.</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/06/17/nginx/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -805,7 +700,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-07-13 09:17:59" itemprop="dateModified" datetime="2021-07-13T09:17:59+08:00">2021-07-13</time>
+        <time title="Modified: 2021-07-14 09:11:51" itemprop="dateModified" datetime="2021-07-14T09:11:51+08:00">2021-07-14</time>
       </span>
 
   
@@ -818,15 +713,19 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>在工作中需要解析某个excel文件,提取其中的数据在进行操作.在这里,是要解析excel文件,并将其数据放回前端显示出来,本环境是基于springboot下的项目.</p>
+          <p>在工作中需要解析某个excel文件,提取其中的数据在进行操作.在这里,是要解析excel文件,并将其数据放回前端显示出来,本环境是基于springboot下的项目.这是利用最底层的poi依赖完成的</p>
 <h3 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h3><p> 首先是在pom文件添加依赖,</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.poi<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>poi-ooxml<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.17<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p> 添加依赖后,利用文件的输入流来得到数据,并循环来获取数据</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExcelUtils</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">ExcelUtils</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取并解析excel文件，返回一个二维集合</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> file 上传的文件</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 二维集合（第一重集合为行，第二重集合为列，每一行包含该行的列集合，列集合包含该行的全部单元格的值）</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> ArrayList&lt;ArrayList&lt;String&gt;&gt; analysis(MultipartFile file) &#123;</span><br><span class="line">        ArrayList&lt;ArrayList&lt;String&gt;&gt; row = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="comment">//获取文件名称</span></span><br><span class="line">        String fileName = file.getOriginalFilename();</span><br><span class="line">        System.out.println(fileName);</span><br><span class="line">        InputStream in = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//获取输入流</span></span><br><span class="line">            in=file.getInputStream();</span><br><span class="line">            <span class="comment">//判断excel版本</span></span><br><span class="line">            Workbook workbook = <span class="keyword">null</span>;</span><br><span class="line">            <span class="keyword">if</span> (judegExcelEdition(fileName)) &#123;</span><br><span class="line">                workbook = <span class="keyword">new</span> XSSFWorkbook(in);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                workbook = <span class="keyword">new</span> HSSFWorkbook(in);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//获取第一张工作表</span></span><br><span class="line">            Sheet sheet = workbook.getSheetAt(<span class="number">0</span>);</span><br><span class="line">            <span class="comment">//从第二行开始获取</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; sheet.getPhysicalNumberOfRows(); i++) &#123;</span><br><span class="line">                <span class="comment">//循环获取工作表的每一行</span></span><br><span class="line">                Row sheetRow = sheet.getRow(i);</span><br><span class="line">                <span class="comment">//循环获取每一列</span></span><br><span class="line">                ArrayList&lt;String&gt; cell = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">                <span class="comment">//需要表头将j=1 改成j=0</span></span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; sheetRow.getPhysicalNumberOfCells(); j++) &#123;</span><br><span class="line">                    <span class="comment">//将每一个单元格的值装入列集合</span></span><br><span class="line">                    Cell cell1 = sheetRow.getCell(j);</span><br><span class="line">                    <span class="comment">//此处判断所在单元格是否和空,避免将空的一列给排除掉</span></span><br><span class="line">                    <span class="keyword">if</span> (cell1==<span class="keyword">null</span>)&#123;</span><br><span class="line">                        cell.add(<span class="keyword">null</span>);</span><br><span class="line">                    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    cell1.setCellType(CELL_TYPE_STRING);</span><br><span class="line">                    cell.add(cell1.getStringCellValue());&#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//将装有每一列的集合装入大集合</span></span><br><span class="line">                row.add(cell);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            System.out.println(<span class="string">&quot;===================未找到文件======================&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            System.out.println(<span class="string">&quot;===================上传失败======================&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="comment">//关闭资源</span></span><br><span class="line">            <span class="keyword">if</span> (in != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    in.close();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> row;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 判断上传的excel文件版本（xls为2003，xlsx为2017）</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> fileName 文件路径</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> excel2007及以上版本返回true，excel2007以下版本返回false</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">judegExcelEdition</span><span class="params">(String fileName)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (fileName.matches(<span class="string">&quot;^.+\\.(?i)(xls)$&quot;</span>))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p> 现在来进行测试,编写controller层的测试代码:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//接受文件上传</span></span><br><span class="line"><span class="meta">@AResponseBody</span></span><br><span class="line"><span class="meta">@PostMapping(&quot;/upload&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> ResponseData <span class="title">uploadFile</span><span class="params">(MultipartFile file)</span> </span>&#123;</span><br><span class="line">    Map&lt;String, Object&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;(<span class="number">16</span>);</span><br><span class="line">    <span class="comment">//调用工具类解析excel文件</span></span><br><span class="line">    List&lt;ArrayList&lt;String&gt;&gt; row = ExcelUtils.analysis(file);</span><br><span class="line">    <span class="comment">//打印信息</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; row.size(); i++) &#123;</span><br><span class="line">        List&lt;String&gt; cell = row.get(i);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; cell.size(); j++) &#123;</span><br><span class="line">            System.out.print(cell.get(j) + <span class="string">&quot; &quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ResponseData(row);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/05/28/Excel%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -959,7 +858,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-07-13 09:17:59" itemprop="dateModified" datetime="2021-07-13T09:17:59+08:00">2021-07-13</time>
+        <time title="Modified: 2021-07-14 09:13:23" itemprop="dateModified" datetime="2021-07-14T09:13:23+08:00">2021-07-14</time>
       </span>
 
   
@@ -976,12 +875,14 @@
 <p> @Component注解表面这个类会作为一个组件类，并且告诉spring要为这个类创建一个bean放在容器中.</p>
 <h2 id="两个的差别"><a href="#两个的差别" class="headerlink" title="两个的差别"></a>两个的差别</h2><p> 相同点：两者的结果都是为spring容器注册Bean.</p>
 <p> 不同点：@Component 通常是通过类路径扫描来自动侦测以及自动装配到Spring容器中。它与Bean之间为隐式关系即每个类就是一个bean。</p>
-<p>　　　　@Bean 注解通常是我们在标有该注解的方法中定义产生这个bean的逻辑。它是显式声明单个bean，而不是让Spring像上面那样自动执行它。它将bean的声明与类定义分离，并允许您精确地创建和配置bean</p>
-<p> @Component （@Controller @Service @Respository）作用于类上，只有在我们的SpringBoot应用程序启用了组件扫描并且包含了被注解的类时才有效。通过组件扫描，Spring将扫描整个类路径，并将所有@Component注释类添加到Spring Context，这里有的不足就是会把整个类当成bean注册到spring 容器上，如果这个类中并不是所有方法都需要注册为bean的话，会出现不需要的方法都注册成为bean，这时候必须确保这些不需要的方法也能注册为bean或者在扫描中加filter 过滤这些不需要的bean,否者spring将无法成功启动。</p>
-<p>@Bean相对来说就更加灵活了，它可以独立加在方法上，按需注册到spring容器，而且如果你要用到第三方类库里面某个方法的时候，你就只能用@Bean把这个方法注册到spring容器，因为用@Component你需要配置组件扫描到这个第三方类路径而且还要在别人源代码加上这个注解，很明显是不现实的。</p>
-<h2 id="两者的使用情况"><a href="#两者的使用情况" class="headerlink" title="两者的使用情况"></a>两者的使用情况</h2><p> @Bean 当你没有源代码的时候，想要使用该组件，就可以用@Bean注解，放返回对应的对象到容器中。又比如，你所需要的对象，必须需要其他的一些依赖进行注入的时候，或者一些其他的参数来进行注入的时候，就可以使用@Bean注解的方式，来进行获取组件。</p>
-<p> @Configuration的情况，当你自己创建一个类,想把此类作为组件添加进去,就可以在该类上添加@Component,而不用在另外的配置类上添加@Bean.</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/05/15/%E6%B3%A8%E8%A7%A3Bean%E5%92%8CComponent%E7%9A%84%E5%8C%BA%E5%88%AB/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1038,7 +939,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-07-13 09:17:59" itemprop="dateModified" datetime="2021-07-13T09:17:59+08:00">2021-07-13</time>
+        <time title="Modified: 2021-07-14 09:12:42" itemprop="dateModified" datetime="2021-07-14T09:12:42+08:00">2021-07-14</time>
       </span>
 
   
@@ -1056,200 +957,14 @@
 <p> 含有丰富的start,拿来即用.</p>
 <h2 id="快速上手"><a href="#快速上手" class="headerlink" title="快速上手"></a>快速上手</h2><p> 在springboot项目中,加入打包插件后打成jar包 ,在 cmd界面启动jar包 命令: java -jar [文件名.jar]</p>
 <p> 修改配置或者写自己的配置:首先创建一个application.properties或者application.yml文件(约定大于配置),比如修改端口号 server.port=xxxx; 增加虚拟路径: server.servlet.context-path= url</p>
-<h2 id="微服务和分布式的区别"><a href="#微服务和分布式的区别" class="headerlink" title="微服务和分布式的区别"></a>微服务和分布式的区别</h2><p> 微服务: 是一种架构放个,一个应用可以拆分为一组小型服务,每个服务都可以运行在自己的进程内,也就是可独立部署和升级.服务间使用轻量级http(推荐)交互</p>
-<p> 分布式: 将一个大的系统分成多个模块,,业务模块部署到不同的机器上,各个业务模块之间通过接口来进行交互,<br>​ 分布式容易出现的问题: 远程调用,服务发现,负载均衡,服务容错, 配置管理,服务监控,链路追踪,日志管理,任务调度,事务管理.</p>
-<p> 集群: 就是很多相同的服务,一个或者多台服务器部署相同应用构成一个集群.</p>
-<p> 微服务重在解耦合,使得每个模块都独立,分布式重在资源的共享和加快计算机的响应速度.一个是分散能力,一个是分散压力.</p>
-<h2 id="springboot注解"><a href="#springboot注解" class="headerlink" title="springboot注解"></a>springboot注解</h2><p> 默认的扫描规则: 在启动类(<code>@SpringbootApplication</code>)所在包及子包是默认扫描的,<br>​ 想要改变扫描路径.可以手动修改,在<code>@SpringbootApplication(scanBasePackages=&quot;xxx&quot;)</code>就行,或者<code>@ComponentScan</code> (包扫描) 指定扫描路径.</p>
-<p> <code>@SpringBootApplication</code>等同于<code>@SpringBootConfiguration</code> + <code>@EnableAutoConfiguration</code> + <code>@ComponentScan</code></p>
-<p> <code>@Configuration</code> 表示这个一个配置类 ,相当于spring中的配置文件。在springboot中,proxyBeanMethods是默认=true的(proxyBeanMethods: 是不是代理类的方法,如果是true,那么就是代理对象调用方法,去检查容器中,是否有该组件,有就从容器中拿.如果是false,那么就不是代理对象了,就是每次都是新new一个对象)<br>​ spring的配置模式FULL 和 LITE 模式 : proxyBeanMethods=true为FULL 全局配置模式,LITE就是轻量级模式.用来管理组件依赖问题.<br>​ LITE的优点是 在springboot项目启动的时候,不会去检查那些组件在没在容器中,启动更快.使用情况,如果只是在容器中注册组件,而不依赖其他的组件,别的也不依赖这个组件,建议用false</p>
-<p> <code>@Bean</code> 在配置类中标注在方法的时候，返回一个name为方法名类型为返回值的组件，默认是单例的。</p>
-<p> <code>@Import</code> 位置: 只要在容器中的组件上就行(要能扫描到). 此注解中的参数为一个Class的数组,可以自动的在容器中调用指定的无参构造方法,创建出组件类型的对象.默认组件的名字就是全类名.</p>
-<p> <code>@ConditionalOnxxx</code>条件装配: 满足他的条件的时候则进行组件的注入</p>
-<p> <code>@ImportResource</code> 导入一个资源文件</p>
-<p> <code>@ConfigurationProperties</code> 配置绑定, 位置: 在此类标注<code>@Component</code>或在配置类上<code>@EnableConfigurationProperties</code> 指定该类才能使用此注解,其中属性 prefix,表示与配置文件的哪 个前缀进行绑定</p>
-<p> <code>@EnableConfigurationProperties</code> 开启属性配置功能,位置 : 在配置类上. 此注解的属性为Class,指的是开启这个类的配置配置功能,还可以把该类自动注入到容器中.</p>
-<p><code>@EnableWebMvc</code> 当使用<code>@EnableWebMvc</code>时，加载的是WebMvcConfigurationSupport中的配置项。也就是springboot中自己自动装配就不发生了.只有WebMvcConfigurationSupport提供的组件和自定义的组件了.<br>    当不使用<code>@EnableWebMvc</code>时，使用的是WebMvcAutoConfiguration引入的配置项。</p>
-<h2 id="springboot自动配置"><a href="#springboot自动配置" class="headerlink" title="springboot自动配置"></a>springboot自动配置</h2><p> 每项的配置都有着默认值,配置文件的值最终会绑定在对应的类上,容器启动时,就会把这些配置文件对应的值赋值到对应的类上(一般是 xxxxxproperties)</p>
-<p> springboot的自动配置是按需加载所有的自动配置项. 导入对应的starter才会导入对应的配置类.所有的自动配置来自<code>springboot-boot-autoconfigure</code>包中<br><img src="/2021/05/15/springboot/OH@P%5DI3%25KDUXH%7DH54%25%7BHUUN.png" alt="img"></p>
-<p> 要先分析springboot,首先要从他的启动类注解<code>@SpringBootApplication</code>开始</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootConfiguration</span></span><br><span class="line"><span class="meta">@EnableAutoConfiguration</span></span><br><span class="line"><span class="meta">@ComponentScan(</span></span><br><span class="line"><span class="meta">    excludeFilters = &#123;@Filter(</span></span><br><span class="line"><span class="meta">    type = FilterType.CUSTOM,</span></span><br><span class="line"><span class="meta">    classes = &#123;TypeExcludeFilter.class&#125;), @Filter(</span></span><br><span class="line"><span class="meta">    type = FilterType.CUSTOM,</span></span><br><span class="line"><span class="meta">    classes = &#123;AutoConfigurationExcludeFilter.class&#125;)&#125;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> SpringBootApplication&#123;&#125;</span><br></pre></td></tr></table></figure>
-
-<p> 1 <code>@SpringBootConfiguration</code></p>
-<p> 在此注解中,除开元注解就只有<code>@Configuration</code>,代表当前是一个配置类</p>
-<p> 2 <code>@ComponentScan</code> 指定包扫描</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> <span class="number">3</span> `<span class="meta">@EnableAutoConfiguration</span>`   中描述的是:</span><br><span class="line"><span class="meta">@AutoConfigurationPackage</span></span><br><span class="line"><span class="meta">@Import(&#123;AutoConfigurationImportSelector.class&#125;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> EnableAutoConfiguration &#123;&#125;</span><br></pre></td></tr></table></figure>
-
-<p> 3.1 <code>@AutoConfigurationPackage</code> , 此注解中就是包含一个<code>@Import(&#123;Registrar.class&#125;</code> 利用Register来给容器导入一系列组件,对于Register来说里面的代码为:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Registrar</span> <span class="keyword">implements</span> <span class="title">ImportBeanDefinitionRegistrar</span>, <span class="title">DeterminableImports</span> </span>&#123;</span><br><span class="line">    Registrar() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">registerBeanDefinitions</span><span class="params">(AnnotationMetadata metadata, BeanDefinitionRegistry registry)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//去批量注册一些组件</span></span><br><span class="line">        AutoConfigurationPackages.register(registry, (String[])(<span class="keyword">new</span> AutoConfigurationPackages.PackageImports(metadata)).getPackageNames().toArray(<span class="keyword">new</span> String[<span class="number">0</span>]));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Set&lt;Object&gt; <span class="title">determineImports</span><span class="params">(AnnotationMetadata metadata)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Collections.singleton(<span class="keyword">new</span> AutoConfigurationPackages.PackageImports(metadata));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<pre><code> 对于register的方法就是, 得到包名,然后封装到一个数组中,就是表示把这个包下的组件全部添加到容器之中。这就是为什么将是main方法所在的包及其子包的组件注册到容器中的原因了。
-</code></pre>
-<p> 3.2 <code>@Import(&#123;AutoConfigurationImportSelector.class&#125;)</code>对于AutoConfigurationImportSelector类来说中有一个selectImports（）方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> String[] selectImports(AnnotationMetadata annotationMetadata) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="keyword">this</span>.isEnabled(annotationMetadata)) &#123;</span><br><span class="line">        <span class="keyword">return</span> NO_IMPORTS;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        AutoConfigurationImportSelector.AutoConfigurationEntry autoConfigurationEntry = <span class="keyword">this</span>.getAutoConfigurationEntry(annotationMetadata);</span><br><span class="line">        <span class="keyword">return</span> StringUtils.toStringArray(autoConfigurationEntry.getConfigurations());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p> 在上面的代码中，需要了解的就是getAutoConfigurationEntry(annotationMetadata) 给容器中怎么批量导入组件:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> AutoConfigurationImportSelector.<span class="function">AutoConfigurationEntry <span class="title">getAutoConfigurationEntry</span><span class="params">(AnnotationMetadata annotationMetadata)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!<span class="keyword">this</span>.isEnabled(annotationMetadata)) &#123;</span><br><span class="line">            <span class="keyword">return</span> EMPTY_ENTRY;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            AnnotationAttributes attributes = <span class="keyword">this</span>.getAttributes(annotationMetadata);</span><br><span class="line">            List&lt;String&gt; configurations = <span class="keyword">this</span>.getCandidateConfigurations(annotationMetadata, attributes);</span><br><span class="line">            configurations = <span class="keyword">this</span>.removeDuplicates(configurations);</span><br><span class="line">            Set&lt;String&gt; exclusions = <span class="keyword">this</span>.getExclusions(annotationMetadata, attributes);</span><br><span class="line">            <span class="keyword">this</span>.checkExcludedClasses(configurations, exclusions);</span><br><span class="line">            configurations.removeAll(exclusions);</span><br><span class="line">            configurations = <span class="keyword">this</span>.getConfigurationClassFilter().filter(configurations);</span><br><span class="line">            <span class="keyword">this</span>.fireAutoConfigurationImportEvents(configurations, exclusions);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> AutoConfigurationImportSelector.AutoConfigurationEntry(configurations, exclusions);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<pre><code> 以上代码中 重要的是`List&lt;String&gt; configurations = this.getCandidateConfigurations(annotationMetadata, attributes);  configurations = this.removeDuplicates(configurations)` 下面的就是对于结果进行排除和删除的筛选操作. 此代码就是获取所有需要导入到容器中的组件.
-</code></pre>
-<p> 在此方法中的实现:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; configurations = SpringFactoriesLoader.loadFactoryNames(this.getSpringFactoriesLoaderFactoryClass(), this.getBeanClassLoader());</span><br></pre></td></tr></table></figure>
-
-
-
-<pre><code> 利用工厂加载 `private static Map&lt;String, List&lt;String&gt;&gt; loadSpringFactories(ClassLoader classLoader)`得到所有的组件.分析 loadSpringFactories 方法
-</code></pre>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//先查找一个资源文件 资源文件的位置META-INF/spring.factories</span></span><br><span class="line"><span class="comment">//在spring-boot-AutoConfigure的jar中的spring.factories文件下,有着大量的xxxAutoConfiguration,全场景的自动配置都在其中,说明springboot启动时,就要给容器中加载的所有配置类</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>​    由于并不是所有的组件都是我们必须的,所以springboot就有按需开启自动配置项.在很多类的注解有<code>@Conditionalxxx</code>,所以要满足对应的条件才能生效</p>
-<pre><code> 在某些方法上会同时标注`@ConditionalOnBean(xxx.class)` 和 `@ConditionalMissingBean(name=xxx)` 这这种情况. 第一个是容器中有该类型的组件,第二个是没有这个名字的组件,比如:
-</code></pre>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line">        <span class="meta">@ConditionalOnBean(&#123;MultipartResolver.class&#125;)</span></span><br><span class="line">        <span class="meta">@ConditionalOnMissingBean( name = &#123;&quot;multipartResolver&quot;&#125;)</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> MultipartResolver <span class="title">multipartResolver</span><span class="params">(MultipartResolver resolver)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> resolver;&#125;&#125;</span><br></pre></td></tr></table></figure>
-
-<p> 目的就是防止你乱命名~~.</p>
-<pre><code> 总结就是: springboot会先加载所有的自动配置类(xxxAutoConfiguration)导入组件,组件的值在xxxxproperties中拿值,xxxxproperties从配置文件中获取值.有一系列定制化配置,在springboot启动的组件中,主要是先以用户的为主,用户没有配置的,springboot会再根据自己的配置文件来进行配置.
-</code></pre>
-<p>在yml文件中 value的值单引号和双引号的区别 : 双引号就是原本的意思 比如 \n 在单引号作为文本输出,双引号自动转义成换行符.</p>
-<h2 id="springboot的web开发"><a href="#springboot的web开发" class="headerlink" title="springboot的web开发"></a>springboot的web开发</h2><h4 id="静态资源资源目录"><a href="#静态资源资源目录" class="headerlink" title="静态资源资源目录"></a>静态资源资源目录</h4><p>​    类路径下:<code>static</code>   <code>public</code>    <code>resource</code>  <code>META-INF/resource</code><br>​    访问项目根路径/就可以访问<br>​    原理 : 静态资源映射/**  会拦截所有的请求; 请求进来,先去controller看能不能处理,如果能处理就去controller,不能处理就交给静态资源处理器.静态资源如果也找不到就会报出404的结果.</p>
-<h4 id="静态资源访问的前缀"><a href="#静态资源访问的前缀" class="headerlink" title="静态资源访问的前缀"></a>静态资源访问的前缀</h4><p>默认是无前缀</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">mvc:</span></span><br><span class="line">    <span class="attr">static-path-pattern:</span> <span class="string">/xxx/**</span></span><br></pre></td></tr></table></figure>
-
-<p>表示所有的静态资源的访问路径都要加上xxx/才能访问.</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">web:</span></span><br><span class="line">    <span class="attr">resources:</span></span><br><span class="line">      <span class="attr">static-locations:</span> <span class="string">classpath:/xxx/</span></span><br></pre></td></tr></table></figure>
-
-<p>表示在类路径下的xxx文件夹才是静态资源的存放位置</p>
-<h4 id="静态资源配置原理"><a href="#静态资源配置原理" class="headerlink" title="静态资源配置原理"></a>静态资源配置原理</h4><p>​    springboot启动默认加载 xxxAutoConfiguration 类(自动配置类)<br>​    springbootMVC功能的自动配置类 都集中在WebMvcAutoConfiguration中.</p>
-<h5 id="配置类只有一个有参构造器"><a href="#配置类只有一个有参构造器" class="headerlink" title="配置类只有一个有参构造器"></a>配置类只有一个有参构造器</h5><pre><code> 那么所有参数的值都会在容器中进行查找并添加到容器中去.
-</code></pre>
-<h4 id="restful风格"><a href="#restful风格" class="headerlink" title="restful风格"></a>restful风格</h4><p>分为表单提交和利用客户端直接提交:</p>
-<p>​    表单提交首先表单要使用post方式,且表单中要使用一行name为_method ,value为指定的方式(delete,put..)的这样一行数据.还要开启springmvc的此功能. 在yml中 <code>spring.mvc.hiddenmethod.filter.enable=true</code> 即可.原理是利用filter拦截请求,分析请求方式,然后在进行wrapper包装成对应的请求方式.</p>
-<p>rest使用客户端工具直接发送,就会直接显示该请求方式,无需使用filter.</p>
-<h4 id="请求映射原理"><a href="#请求映射原理" class="headerlink" title="请求映射原理"></a>请求映射原理</h4><p>​    我们知道所有的请求都会来到dispatcherServlet中,原理还是使用的是springmvc的部分.最终是要继承HttpServlet,下面为整个的继承树</p>
-<p><img src="/2021/05/15/springboot/image-20210529222903580.png" alt="image-20210529222903580"></p>
-<p>​    通过在HttpServlet向下开始找doGet和doPost方法,在FrameworkServlet中找到对应的方法,发现不管是doGet,doPost,doPut..等等都会调用<code>this.processRequest(request, response)</code>此方法,在此方法中,除开关闭资源,和开始的初始化功能,最重要的就是其中的<code>doService(request,response)</code>方法了,在FrameworkServlet中doService是一个抽象方法,所以在看DispatcherServlet中的doService方法.其中除开关闭资源和初始化部分,又是只有一个方法<code>this.doDispatch(request, response)</code>(<strong>针对某部分看哪些是重要的代码就看try里面的部分</strong>),现在就是主要的研究的是此方法.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">                    processedRequest = <span class="keyword">this</span>.checkMultipart(request); <span class="comment">//检查是否为文件上传请求</span></span><br><span class="line">                    multipartRequestParsed = processedRequest != request; </span><br><span class="line">                    mappedHandler = <span class="keyword">this</span>.getHandler(processedRequest); <span class="comment">//决定哪个handler能解析当前的请求</span></span><br><span class="line">                   <span class="keyword">if</span> (mappedHandler == <span class="keyword">null</span>) &#123; <span class="keyword">this</span>.noHandlerFound(processedRequest, response);<span class="keyword">return</span>; &#125;</span><br><span class="line">                    HandlerAdapter ha = <span class="keyword">this</span>.getHandlerAdapter(mappedHandler.getHandler());</span><br><span class="line">                    String method = request.getMethod();</span><br><span class="line">                &#125; </span><br></pre></td></tr></table></figure>
-
-<p>​    所以分析<code>getHandler(processedRequest)</code>方法:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Nullable</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> HandlerExecutionChain <span class="title">getHandler</span><span class="params">(HttpServletRequest request)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.handlerMappings != <span class="keyword">null</span>) &#123;</span><br><span class="line">            Iterator var2 = <span class="keyword">this</span>.handlerMappings.iterator();</span><br><span class="line">            <span class="keyword">while</span>(var2.hasNext()) &#123;</span><br><span class="line">                HandlerMapping mapping = (HandlerMapping)var2.next();</span><br><span class="line">                HandlerExecutionChain handler = mapping.getHandler(request);</span><br><span class="line">                <span class="keyword">if</span> (handler != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    <span class="keyword">return</span> handler;&#125;&#125;&#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<pre><code> 使用迭代器去逐个遍历,判断哪个handlerMapping中的handler可以解析当前的请求, 可自行翻阅源码,全是一直调用,差点迷路了
-</code></pre>
-<p>​    <code>@RequestBody</code> 获得请求体的信息,只有post请求才有请求体.(post包括put,delete)</p>
-<h5 id="cookie被禁用了-session里面的内容怎么获得"><a href="#cookie被禁用了-session里面的内容怎么获得" class="headerlink" title="cookie被禁用了,session里面的内容怎么获得?"></a>cookie被禁用了,session里面的内容怎么获得?</h5><p>​    首先session的使用原理,每个session都有一个jsessionid,保存在cookie里面,而cookie每次发请求都会携带.通过cookie中的jsessionid获取到对应的session对象.<br>​    如果cookie被禁用了,jsessionid也会被禁用,那么session对象也将获取不到.怎么样去使用session呢?<br>​    可以使用url的重写 ,利用矩阵变量  /xxx;jsessionid=xxx . 把相当于是吧cookie里面的值利用矩阵变量的方式进行传递.在入参数使用@MatrixVariable注解即可.</p>
-<p>​    而springboot默认关闭矩阵变量功能,需要手动开启:<br>​    在springboot中对于web的处理就是使用的springmvc.所以在springmvc中对路径的处理,就是UrlPathHelper进行解析.其中有一个removeSemicolonContent (移除分号内容)默认为true,那怎么去实现呢? 首先在配合类<code>@Configuration</code>中 可以去实现 WebMvcConfigurer,再去实现 <code>configurePathMatch</code>方法即可.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebConfig</span> <span class="keyword">implements</span> <span class="title">WebMvcConfigurer</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">configurePathMatch</span><span class="params">(PathMatchConfigurer configurer)</span> </span>&#123;</span><br><span class="line">        UrlPathHelper urlPathHelper=<span class="keyword">new</span> UrlPathHelper();</span><br><span class="line">        <span class="comment">//不移除分号后面的内容;</span></span><br><span class="line">        urlPathHelper.setRemoveSemicolonContent(<span class="keyword">false</span>);</span><br><span class="line">        configurer.setUrlPathHelper(urlPathHelper);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>​    或者使用在配置类中用@Bean的方法来进行注册</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> WebMvcConfigurer <span class="title">webMvcConfigurer</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> WebMvcConfigurer()&#123;</span><br><span class="line">          <span class="meta">@Override</span></span><br><span class="line">          <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">configurePathMatch</span><span class="params">(PathMatchConfigurer configurer)</span> </span>&#123;</span><br><span class="line">              UrlPathHelper urlPathHelper=<span class="keyword">new</span> UrlPathHelper();</span><br><span class="line">              <span class="comment">//不移除分号后面的内容;</span></span><br><span class="line">              urlPathHelper.setRemoveSemicolonContent(<span class="keyword">false</span>);</span><br><span class="line">              configurer.setUrlPathHelper(urlPathHelper);</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="请求流程"><a href="#请求流程" class="headerlink" title="请求流程"></a>请求流程</h4><p>分析DispatcherServlet中的dispatch方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">processedRequest = checkMultipart(request);</span><br><span class="line">				multipartRequestParsed = (processedRequest != request);</span><br><span class="line">				<span class="comment">// Determine handler for the current request.</span></span><br><span class="line">				mappedHandler = getHandler(processedRequest);</span><br><span class="line">				<span class="keyword">if</span> (mappedHandler == <span class="keyword">null</span>) &#123;</span><br><span class="line">					noHandlerFound(processedRequest, response);<span class="keyword">return</span>;&#125;</span><br><span class="line">				<span class="comment">// Determine handler adapter for the current request.</span></span><br><span class="line">				HandlerAdapter ha = getHandlerAdapter(mappedHandler.getHandler());</span><br><span class="line">				<span class="comment">// Process last-modified header, if supported by the handler.</span></span><br><span class="line">				String method = request.getMethod();</span><br><span class="line">				<span class="keyword">boolean</span> isGet = <span class="string">&quot;GET&quot;</span>.equals(method);</span><br><span class="line">				<span class="keyword">if</span> (isGet || <span class="string">&quot;HEAD&quot;</span>.equals(method)) &#123;</span><br><span class="line">					<span class="keyword">long</span> lastModified = ha.getLastModified(request, mappedHandler.getHandler());</span><br><span class="line">					<span class="keyword">if</span> (<span class="keyword">new</span> ServletWebRequest(request, response).checkNotModified(lastModified) &amp;&amp; isGet)<span class="keyword">return</span>;&#125;</span><br><span class="line"></span><br><span class="line">				<span class="keyword">if</span> (!mappedHandler.applyPreHandle(processedRequest, response)) <span class="keyword">return</span>;</span><br><span class="line">				<span class="comment">// Actually invoke the handler.</span></span><br><span class="line">				mv = ha.handle(processedRequest, response, mappedHandler.getHandler());</span><br><span class="line">				<span class="keyword">if</span> (asyncManager.isConcurrentHandlingStarted()) <span class="keyword">return</span>;</span><br><span class="line">				applyDefaultViewName(processedRequest, mv);</span><br><span class="line">				mappedHandler.applyPostHandle(processedRequest, response, mv);</span><br></pre></td></tr></table></figure>
-
-
-
-<p>​    上面说到<code>this.doDispatch(request, response)</code>方法中,获取到能解析的handler之后,又要开始进行参数的解析与适配,所以 <code>HandlerAdapter ha = this.getHandlerAdapter(mappedHandler.getHandler())</code>方法就起到了这个作用. 也就是:</p>
-<ul>
-<li>先从HandlerMapping中知道能处理请求的Handler(controller中对应的Method);</li>
-<li>再为当前的Handler找到对应的适配器  HanderAdapter</li>
-<li>最后开始执行 <code>ha.handle(...)</code>注释中也能看得到,将请求和响应和对应的Handler放入此方法中.</li>
-</ul>
-<p>接着向下追溯源码,以RequestMappingHandlerAdapter为例来说的话,分析<code>handleInternal(...)</code>方法的<code>mav = invokeHandlerMethod(request,response, handlerMethod);</code>此行代码;  此行代码就是执行目标方法.</p>
-<p>拿到此方法的try部分</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">WebDataBinderFactory binderFactory = getDataBinderFactory(handlerMethod);</span><br><span class="line">			ModelFactory modelFactory = getModelFactory(handlerMethod, binderFactory);</span><br><span class="line">			ServletInvocableHandlerMethod invocableMethod = createInvocableHandlerMethod(handlerMethod);</span><br><span class="line">			<span class="keyword">if</span> (<span class="keyword">this</span>.argumentResolvers != <span class="keyword">null</span>) &#123;</span><br><span class="line">				invocableMethod.setHandlerMethodArgumentResolvers(<span class="keyword">this</span>.argumentResolvers);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (<span class="keyword">this</span>.returnValueHandlers != <span class="keyword">null</span>) &#123;</span><br><span class="line">				invocableMethod.setHandlerMethodReturnValueHandlers(<span class="keyword">this</span>.returnValueHandlers);</span><br><span class="line">			&#125;</span><br><span class="line">			invocableMethod.setDataBinderFactory(binderFactory);</span><br><span class="line">			invocableMethod.setParameterNameDiscoverer(<span class="keyword">this</span>.parameterNameDiscoverer);</span><br><span class="line"></span><br><span class="line">			ModelAndViewContainer mavContainer = <span class="keyword">new</span> ModelAndViewContainer();</span><br><span class="line">			mavContainer.addAllAttributes(RequestContextUtils.getInputFlashMap(request));</span><br><span class="line">			modelFactory.initModel(webRequest, mavContainer, invocableMethod);</span><br><span class="line">			mavContainer.setIgnoreDefaultModelOnRedirect(<span class="keyword">this</span>.ignoreDefaultModelOnRedirect);</span><br><span class="line"></span><br><span class="line">			AsyncWebRequest asyncWebRequest = WebAsyncUtils.createAsyncWebRequest(request, response);</span><br><span class="line">			asyncWebRequest.setTimeout(<span class="keyword">this</span>.asyncRequestTimeout);</span><br><span class="line"></span><br><span class="line">			WebAsyncManager asyncManager = WebAsyncUtils.getAsyncManager(request);</span><br><span class="line">			asyncManager.setTaskExecutor(<span class="keyword">this</span>.taskExecutor);</span><br><span class="line">			asyncManager.setAsyncWebRequest(asyncWebRequest);</span><br><span class="line">			asyncManager.registerCallableInterceptors(<span class="keyword">this</span>.callableInterceptors);</span><br><span class="line">			asyncManager.registerDeferredResultInterceptors(<span class="keyword">this</span>.deferredResultInterceptors);</span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span> (asyncManager.hasConcurrentResult()) &#123;</span><br><span class="line">				Object result = asyncManager.getConcurrentResult();</span><br><span class="line">				mavContainer = (ModelAndViewContainer) asyncManager.getConcurrentResultContext()[<span class="number">0</span>];</span><br><span class="line">				asyncManager.clearConcurrentResult();</span><br><span class="line">				LogFormatUtils.traceDebug(logger, traceOn -&gt; &#123;</span><br><span class="line">					String formatted = LogFormatUtils.formatValue(result, !traceOn);</span><br><span class="line">					<span class="keyword">return</span> <span class="string">&quot;Resume with async result [&quot;</span> + formatted + <span class="string">&quot;]&quot;</span>;</span><br><span class="line">				&#125;);</span><br><span class="line">				invocableMethod = invocableMethod.wrapConcurrentResult(result);</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			invocableMethod.invokeAndHandle(webRequest, mavContainer);</span><br><span class="line">			<span class="keyword">if</span> (asyncManager.isConcurrentHandlingStarted()) &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">return</span> getModelAndView(mavContainer, modelFactory, webRequest);</span><br></pre></td></tr></table></figure>
-
-<p>​    由上而下开始逐步分析,首先是<code>this.argumentResolvers</code>为参数解析器,确定将要执行的方法中值为什么<br><img src="/2021/05/15/springboot/image-20210530223007086.png" alt="image-20210530223007086"></p>
-<p>​    以上如0表示,当你的参数上注解为@RequestParam时,就为0来进行解析参数,所以springmvc支持哪些参数类型,取决去这些解析器.<br>分析argumentResolvers参数所代表的的接口:</p>
-<p><img src="/2021/05/15/springboot/image-20210530223739907.png" alt="image-20210530223739907"></p>
-<p>判断当前的解析器是否支持这种参数,支持就调用此方法,不支持就下一个循环.而返回值处理器<code>this.returnValueHandlers</code>跟<code>this.argumentResolvers</code>原理是一样的</p>
-<p>​    然后进行下面的开始准备执行此行代码 <code>invocableMethod.invokeAndHandle(webRequest, mavContainer);</code>通过追溯此代码发现,真正执行我们写的Controller层的方法的是:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ServletInvocableHandlerMethod</span></span><br><span class="line">Object returnValue = invokeForRequest(webRequest, mavContainer, providedArgs);</span><br></pre></td></tr></table></figure>
-
-<p>​    那是怎么执行到我们方法的呢,开始进入此方法:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Nullable</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">invokeForRequest</span><span class="params">(NativeWebRequest request, <span class="meta">@Nullable</span> ModelAndViewContainer mavContainer, Object... providedArgs)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        Object[] args = <span class="keyword">this</span>.getMethodArgumentValues(request, mavContainer, providedArgs);</span><br><span class="line">        <span class="keyword">if</span> (logger.isTraceEnabled()) &#123;</span><br><span class="line">            logger.trace(<span class="string">&quot;Arguments: &quot;</span> + Arrays.toString(args));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.doInvoke(args);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>​    开始 <code>this.getMethodArgumentValues(...)</code>开始获得方法中所有的参数.接下来就是执行反射部分的代码了.</p>
-<h3 id="拦截器"><a href="#拦截器" class="headerlink" title="拦截器"></a>拦截器</h3><p>​    要实现HandlerInterceptor接口,三个方法 : preHandle(在进入方法之前) postHandle(执行完目标方法之后) afterCompletion(请求完成以后)</p>
-<p>​    要在<code>@Configuration</code>注解所标注的类中进行注册</p>
-<h4 id="拦截器原理"><a href="#拦截器原理" class="headerlink" title="拦截器原理"></a>拦截器原理</h4><ol>
-<li>根据当前url请求,找到可以处理此请求的Handler以及handler的所有的拦截器,在DispatcherServlet类中的<code>doDispatch()</code>方法中</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!mappedHandler.applyPreHandle(processedRequest, response)) <span class="keyword">return</span>;</span><br><span class="line">				<span class="comment">// Actually invoke the handler.</span></span><br><span class="line">		mv = ha.handle(processedRequest, response, mappedHandler.getHandler());</span><br><span class="line">				<span class="keyword">if</span> (asyncManager.isConcurrentHandlingStarted())<span class="keyword">return</span></span><br></pre></td></tr></table></figure>
-
-<p>​    在此方法中,先是调用了<code>applyPreHandle()</code>方法,在此方法里面会循环对应的拦截器,进行拦截验证.里面的拦截器再调用perHandle方法.</p>
-<ol start="2">
-<li>先是<strong>顺序的执行</strong>所有拦截器的preHandle方法<pre><code>如果当前拦截器返回的true,则执行下一个拦截器
-如果当前的拦截器返的false,直接触发**倒序执行**所有的已经执行了的拦截器的afterCompleion
-</code></pre>
-</li>
-<li>如果任何一个拦截器返回false,直接跳出不执行目标方法.</li>
-<li>所有的拦截器都返回true,才执行目标方法.</li>
-<li><strong>倒序执行</strong>拦截器的postHandle方法.</li>
-<li>前面的步骤有任何的异常,都会直接触发拦截器的afterCompletion方法</li>
-</ol>
-<h3 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h3><p>在springboot中的文件上传还是用到了springmvc的功能,多了一个文件上传自动配置类-MultipartAutoConfiguration-MultipartProperties,并且自动配置好了StandardServletMultipartResolver文件上传解析器</p>
-<p>原理步骤:</p>
-<ul>
-<li>请求进来使用文件上传解析器判断并封装好文件上传请求</li>
-<li>参数解析器来解析请求中的文件内容封装成MultipartFIle</li>
-<li>将request中的文件信息封装成一个Map;MultiValueMap&lt;String,MultipartFIle&gt;</li>
-</ul>
-<h3 id="内嵌服务器"><a href="#内嵌服务器" class="headerlink" title="内嵌服务器"></a>内嵌服务器</h3><ul>
-<li>首先springboot应用启动发现当前是Web应用,会导入web场景包导入tomcat</li>
-<li>web应用会创建一个web版的ioc容器<code>ServletWebServerApplicationContext</code></li>
-<li><code>ServletWebServerApplicationContext</code>启动的时候会寻找<code>ServletWebServerFactory</code></li>
-<li>springboot底层有很多的webServer工厂: tomcat,jetty undertow,netty</li>
-<li>底层会有一个自动配置类.<code>ServletWebFactoryAutoConfiguration</code></li>
-<li><code>ServletWebFactoryAutoConfiguration</code>配置类,根据动态的判断系统中导入了那个Web服务器的包.(默认是tomcat包),容器中就有对用web服务器的ServletWebServerFactory</li>
-<li><code>TomcatServletWebServerFactory</code>创建除了tomcat服务器并且启动</li>
-<li>内嵌服务器,就是手动把启动服务器代码进行调动就行.</li>
-</ul>
-<h4 id="切换服务器"><a href="#切换服务器" class="headerlink" title="切换服务器"></a>切换服务器</h4><p>在spring-boot-starter-web中排除掉tomcat服务器,再加上指定的服务器依赖即可.</p>
-<h3 id="定制化Web"><a href="#定制化Web" class="headerlink" title="定制化Web"></a>定制化Web</h3><p>一旦使用<code>@EnableWebMvc</code>将全面接管springmvc,所有的功能全由自己定制.</p>
-<p>使用<code>@EnableWebMvc</code>,会<code>@Import(DelegatingWebMvcConfiguration.class)</code></p>
-<p><code>@Import(DelegatingWebMvcConfiguration.class)</code>的作用</p>
-<ul>
-<li>把所有系统中的WebMvcConfigurer拿过来,所有功能的定制都是这些写configurer 合起来一起生效</li>
-<li>自动配置了一些底层的组件RequestMappingHandlerMapping等等,这些组件依赖的组件都是从容器中获取.</li>
-<li>只保证了springmvc的最基本的使用,不保证其他扩展配置</li>
-</ul>
-<p>如果使用了<code>@EnableWebMvc</code>那么就会默认导入<code>DelegatingWebMvcConfiguration.class</code>,而<code>WebMvcAutoConfiguration</code>要生效,里面的配置必须满足<code>@ConditionOnMissingBean(WebMvcConfigurationSupport.class)</code>,而<code>DelegatingWebMvcConfiguration.class</code>是继承<code>@ConditionOnMissingBean(WebMvcConfigurationSupport.class)</code>的,所以,当使用<code>@EnableWebMvc</code>时候,容器中有了<code>WebMvcConfigurationSupport.class</code>类型的组件.所以spring的<code>WebMvcAutoConfiguration</code>就不生效了</p>
-<h4 id="常用方式"><a href="#常用方式" class="headerlink" title="常用方式"></a>常用方式</h4><p>编写一个配置类+<code>@Bean</code>实现WebConfigurer来替换或者增加容器中的组件即可.</p>
-<h3 id="redis的整合"><a href="#redis的整合" class="headerlink" title="redis的整合"></a>redis的整合</h3><p>​    首先导入依赖</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">org.springframework.boot</span><br><span class="line">spring-boot-starter-data-redis</span><br></pre></td></tr></table></figure>
-
-<p>首先是对查看RedisAutoConfiguration 自动配置类，redisProperties属性类<br>同时支持两个客户端一个是Lettuce，一个是Jdis</p>
-<p>自动注入了redisTemplate&lt;Object,Object&gt;,StringRedisTemplate&lt;String,String&gt;,底层使用这两种template即可进行操作redist</p>
-<h3 id="Junit的整合"><a href="#Junit的整合" class="headerlink" title="Junit的整合"></a>Junit的整合</h3><p>​    在springboot2.2.0之后的版本springboot开始引入了junit5作为单位单元测试默认库。</p>
-<p>​    现在junit5 分为三部分：</p>
-<ul>
-<li>​    JUnit platform：他是在JVM上启动测试框架的基础，不仅支持JUnit自制的测试引擎，而且其他的测试引擎也可以进行接入</li>
-<li>​    JUnit提供了Junit5的新的编程模型，是JUnit5的新特性的核心，内部包含了一个测试引擎，用于阿在JUnit platform中运行</li>
-<li>​    JUnit Vintage：由于Junit发展了多年，为了照顾老的项目，Junit Vintage提供了兼容Junit4和3的测试引擎</li>
-</ul>
-<p>注意：springboot2.4以上的版本移除了对Vintage的依赖，如果需要兼容需要自行引入依赖即可。</p>
-<h3 id="指标监控"><a href="#指标监控" class="headerlink" title="指标监控"></a>指标监控</h3><p>​    我们每个微服务都可以快速引用获得生产级别的应用监控，审计等功能。</p>
-<p>​    导入依赖</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">          &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">          &lt;artifactId&gt;spring-boot-starter-actuator&lt;/artifactId&gt;</span><br><span class="line">      &lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
-
-<p>开启后，springboot会开放两个接口，一个为/actuator/health，用来监控服务的健康情况，一个为/actuator/info，查看服务的详细信息。</p>
-<h3 id="profile功能"><a href="#profile功能" class="headerlink" title="profile功能"></a>profile功能</h3><p>​    为了多环境的适配，springboot简化了profile的功能.</p>
-<p>​    可以在配置文件中配置多个application-xxx.yml的文件.xxx代表着不同的环境.接下来可以在主配置文件中写上spring.profiles.active=xxx即可.</p>
-<p>​    配置规则:</p>
-<ul>
-<li>不带xxx后缀的配置文件为默认配置文件,永远都会加载.</li>
-<li>在默认配置文件中激活制定的不同环境的配置文件.</li>
-<li>默认配置语环境配置将会同时生效.</li>
-<li>如果有同名的冲突的,以带后缀的配置文件优先.</li>
-<li>可以在jar包处使用命令行的方式进行启动jar包  (命令行的优先级最高)<ul>
-<li>java -jar xxx.jar –spring.profiles.active=xxx 来进行指定环境启动即可.</li>
-</ul>
-</li>
-</ul>
-<h2 id="疑问点"><a href="#疑问点" class="headerlink" title="疑问点"></a>疑问点</h2><p> 什么时候使用@Component而不能用@Bean?</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/05/15/springboot/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
