@@ -16,7 +16,9 @@ tags: [学习,spring]
 
  不同点：@Component 通常是通过类路径扫描来自动侦测以及自动装配到Spring容器中。它与Bean之间为隐式关系即每个类就是一个bean。
 
-　　　　@Bean 注解通常是我们在标有该注解的方法中定义产生这个bean的逻辑。它是显式声明单个bean，而不是让Spring像上面那样自动执行它。它将bean的声明与类定义分离，并允许您精确地创建和配置bean
+<!--more-->
+
+　　@Bean 注解通常是我们在标有该注解的方法中定义产生这个bean的逻辑。它是显式声明单个bean，而不是让Spring像上面那样自动执行它。它将bean的声明与类定义分离，并允许您精确地创建和配置bean
 
  @Component （@Controller @Service @Respository）作用于类上，只有在我们的SpringBoot应用程序启用了组件扫描并且包含了被注解的类时才有效。通过组件扫描，Spring将扫描整个类路径，并将所有@Component注释类添加到Spring Context，这里有的不足就是会把整个类当成bean注册到spring 容器上，如果这个类中并不是所有方法都需要注册为bean的话，会出现不需要的方法都注册成为bean，这时候必须确保这些不需要的方法也能注册为bean或者在扫描中加filter 过滤这些不需要的bean,否者spring将无法成功启动。
 

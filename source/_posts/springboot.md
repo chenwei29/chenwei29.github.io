@@ -18,6 +18,8 @@ tags: [学习,spring]
 
  修改配置或者写自己的配置:首先创建一个application.properties或者application.yml文件(约定大于配置),比如修改端口号 server.port=xxxx; 增加虚拟路径: server.servlet.context-path= url
 
+<!--more-->
+
 ## 微服务和分布式的区别
 
  微服务: 是一种架构放个,一个应用可以拆分为一组小型服务,每个服务都可以运行在自己的进程内,也就是可独立部署和升级.服务间使用轻量级http(推荐)交互
