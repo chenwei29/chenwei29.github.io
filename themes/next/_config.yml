@@ -86,7 +86,7 @@ creative_commons:
   license: by-nc-sa
   sidebar: false
   post: false
-  language: zh-CN
+  language: zh-Hans
 
 
 # ---------------------------------------------------------------
@@ -968,7 +968,7 @@ vendors:
   # pace: //cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js
   # pace_css: //unpkg.com/pace-js@1/themes/blue/pace-theme-minimal.css
   # pace_css: //cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/blue/pace-theme-minimal.min.css
-  pace:
+  pace: 
   pace_css:
 
   # Canvas ribbon
