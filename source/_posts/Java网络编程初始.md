@@ -82,15 +82,237 @@ categories: Java基础学习
 - 客户端发送数据
 - 服务器读取数据并打印数据
 
+服务端:
+
+```java
+public class Server {
+    public static void main(String[] args) throws IOException {
+        ServerSocket server = new ServerSocket(2000);
+        System.out.println("服务器准备就绪!");
+        System.out.println("服务器信息 : " + server.getInetAddress() + "端口号 : " + server.getLocalPort());
+
+        //等待客户端连接
+        while (true) {
+            //得到客户端
+            Socket clientSocket = server.accept();
+            //客户端构建异步线程
+            ClientHandler clientHandler = new ClientHandler(clientSocket);
+            clientHandler.start();
+        }
+    }
+
+    //对多个客户端进行异步处理
+    private static class ClientHandler extends Thread {
+        private Socket socket;
+        private boolean flag = true;
+
+        public ClientHandler(Socket socket) {
+            this.socket = socket;
+        }
+
+        @Override
+        public void run() {
+            System.out.println("新客户端连接: " + socket.getInetAddress() + "端口号" + socket.getPort());
+            try {
+                //得到输出流,用于输出数据
+                PrintStream socketOutput = new PrintStream(socket.getOutputStream());
+                //服务器的输入流就等于客户端的输出流,得到数据
+                BufferedReader socketReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                do {
+                    String str = socketReader.readLine();
+                    if ("bye".equals(str)) {
+                        flag = false;
+                        socketOutput.println("bye");
+                    }
+                    //打印到控制台,并且回复一句话
+                    System.out.println("客户端发来的数据 : " + str);
+                    socketOutput.println(str.length() + ",有这么长的话!");
+                } while (flag);
+                socketOutput.close();
+                socketReader.close();
+            } catch (Exception e) {
+                System.out.println("连接异常断开");
+            }
+            finally {
+                try {
+                    socket.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("客户端已经关闭");
+            }
+        }
+    }
+}
+```
+
+客户端:
+
+```
+public class Client {
+    public static void main(String[] args) throws IOException {
+        Socket socket = new Socket();
+        //超时时间
+        socket.setSoTimeout(3000);
+        //连接本地地址,端口号为2000,超时时间3s
+        socket.connect(new InetSocketAddress(Inet4Address.getLocalHost(), 2000), 2000);
+        System.out.println("已向服务器发起连接!等待后续!");
+        System.out.println("客户端信息 : " + socket.getLocalAddress() + "端口号 : " + socket.getLocalPort());
+        System.out.println("服务器信息 : " + socket.getInetAddress() + "端口号 : " + socket.getPort());
+        try {
+            //发送数据
+            todo(socket);
+        } catch (IOException e) {
+            System.out.println("异常关闭!");
+        }
+        //释放资源
+        socket.close();
+        System.out.println("客户端已经退出!");
+    }
+
+    public static void todo(Socket client) throws IOException {
+        //得到键盘输入流
+        InputStream in = System.in;
+        //转换为包装字符流
+        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+
+        //得到Socket输出流
+        OutputStream outputStream = client.getOutputStream();
+        //转换成打印流
+        PrintStream printStream = new PrintStream(outputStream);
+        //得到Socket输入流
+        InputStream inputStream = client.getInputStream();
+        BufferedReader socketReader = new BufferedReader(new InputStreamReader(inputStream));
+        boolean flag = true;
+        do {
+            //键盘读取一行
+            String msg = reader.readLine();
+            //发送给服务器
+            printStream.println(msg);
+
+            //从服务器获取一行
+            String socketMsg = socketReader.readLine();
+            if ("bye".equals(socketMsg)) flag = false;
+            else System.out.println(socketMsg);
+        } while (flag);
+        reader.close();
+        printStream.close();
+        socketReader.close();
+    }
+}
+```
+
+### 报文,协议,Mac地址
+
+#### 报文
+
+- 报文段是指TCP/IP协议网络传输过程中,起着路由导航作用.
+- 用以查询各个网络路由网段,IP地址,交换协议等IP数据包.
+- 报文段充当整个TCP/IP协议数据包的导航路由功能.
+- 报文在传输过程中会不断的封装成组,包,帧来传输.(当传输一些大数据的时候,会将大数据转换成组或者包,帧解析成一个个小的数据点,通过小的数据点来传输.)
+- 封装的方式就是添加一些控制信息组成的头部,即报文头.
+
+#### 传输协议
+
+- 协议顾名思义,一种规定,约束
+- 约定大于配置,在网络传输中同样也适应;网络传输的流程是健壮的稳定的,得益于基础的协议构成.
+- 简单来说: A->B的传输数据,B能识别,反之B->A,A也能识别,这就是协议.
+
+#### Mac地址
+
+- Mac地址叫 Media Access Control或者Medium Access Control翻译为谋体访问控制,或为物理地址,硬件地址.
+- 用来定义网络设备的位置
+- 比如11-22-33-44-55-66 11:22:33:44:55:66 类似于身份证
+
+### IP,端口,远程服务器
+
+#### IP地址
+
+- 即互联网协议地址 
+- 是分配给网络上使用网际协议的设备的数字标签
+- 常见的IP分为IPv4和IPv6两大类
+- IP地址由32为二进制数组成,常以xxx.xxx.xxx.xxx形式出现,每组xxx代表小于或等于255的10进制数.
+- IP地址分为A.B,C,D,E五大类,其中E类为特殊保留地址.
+
+![image-20210715233140805](Java网络编程初始/image-20210715233140805.png)
+
+- IPv4的数量比较少只有42亿个,已经在2011年分配完了
+- IP地址-IPv6
+  - 总共有128位长,采用32个16进制
+  - 由两个逻辑部分组成:一个64位的网络前缀和一个64位的主机地址，主机地址通常根据物理地址自动生成，叫做EUI-64（或者64-位扩展唯一标识)
+- lPv4转换为IPv6一定可行，lPv6转换为IPv4不一定可行
+
+#### 端口
+
+- 如果把IP地址比作一间房子，端口就是出入这间房子的门或者窗户
+- 0到1023号端口以及1024到49151号端口都是特殊端口
+
+![image-20210715214205523](Java网络编程初始/image-20210715214205523.png)
+
+- 计算机之间依照互联网传输层TCP/IP协议的协议通信，不同的协议都对应不同的端口
+- 49152到65535号端口属于动态端口范围，没有端口可以被正式地注册占用
+- 电脑的总端口数为65536个,一个IP地址有这么多个.如果你的本机有多个IP,那么也会有很多个.
+
+#### 远程服务器
+
+- 局域网︰一般而言，家里的环境以及公司相互电脑之间环境都属于局域网
+- 我的电脑与我的手机之间属于局域网,我的电脑与陌生人的电脑属于互联网
+
+### Socket-UDP快速入门
+
+#### UDP是什么
+
+- 是一种用户数据报协议,又称用户数据报文协议
+- 是一个简单的面向数据报的传输层协议，正式规范为RFC 768
+- 是一个用户数据协议,不是连接协议.
+
+#### UDP什么不可靠
+
+- 它一旦把应用程序发给网络层的数据发送出去,就不保留备份(在UDP的数据层面,它只管发送或者接受数据,不对这个数据进行保留备份重发等等)
+- UDP在IP数据报的头部仅仅加入了复用和数据校验（字段)
+- 在发送端生产数据,接收端从网络中抓取数据.(所以它们数据发送,是不需要连接的)
+- 结构简单,无校验,速度快,容易丢包,但是可以广播
+
+#### UDP能做什么
+
+- DNS(访问网站DNS解析)、TFTP(文件传输的协议)、SNMP(网络数据协议传输中的监控的协议)
+- 视频,音频(本身比较大,主要是用于直播),普通数据(无关紧要的数据) (下载视频音频还是要用TCP)
+- UDP的最大长度 16位2字节 就是2的16次方-1 然后自身协议占用32+32位=64位=8字节,所以最大长度为2的16次方-8-1字节.
+
+#### UDP核心API
+
+- DatagramSocket 
+  - 用于接收与发送UDP的类
+  - 负责发送某一个UDP包或者接受UDP包
+  - 不同于TCP,UDP并没有合并到Socket API中
+  - 因为在UDP中是没有服务器和客户端的概念的,这个DatagramSocket 既是你的服务器,又是你的客户端,可以发送也可以接收,不用去监听某个客户端,不涉及客户端跟他的连接,不像TCP去监听一个TCP的来源,连接再进行通讯.
+  - DatagramSocket() 构造函数 创建简单实例，不指定端口与IP,如果需要发送,那么会复用本地可用的端口进行发送数据
+  - DatagramSocket(int port)创建监听固定端口的实例 可以指定某个端口进行监听,但是发送不是这个端口.
+  - DatagramSocket(int port, InetAddress localAddr)创建固定端口指定IP的实例
+  - receive(DatagramPacket d)∶接收
+  - send(DatagramPacket d)∶发送
+  - setSoTimeout(int timeout):设置超时，毫秒
+  - close();关闭
+- DatagramPacket
+  - 用于处理报文
+  - 将byte数组、目标地址、目标端口等数据包装成报文或者将报文拆卸成byte数组
+  - 是UDP的发送实体,也是接收实体.
+  - DatagramPacket(byte[] buf, int offset, int length, InetAddressaddress, int port)
+    - 前三个参数指定buf的使用区间
+    - 后两个参数指定目标机器地址与端口
+  - setData(byte[] buf, int offset, int length),setData(byte[] buf),setData(int length)
+  - getData(),getOffset(),getLength()
+
+#### UDP单播,广播,多播
+
+![image-20210715232631856](Java网络编程初始/image-20210715232631856.png)
 
 
 
-
-
-
-
-
-
+- 广播地址: 
+  - 255.255.255.255为受限广播地址
+  - C网广播地址一般为xxx.xxx.xxx.255
+  - D类地址为多播预留
 
 
 
