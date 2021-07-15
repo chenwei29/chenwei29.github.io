@@ -22,21 +22,19 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"8.0.0-rc.5","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false};
   </script>
 
-  <meta name="description" content="两者作用 @Bean注解在方法上,告诉spring这个方法会放回一个对象,将这个对应托管在容器中.在方法中会有该Bean对象产生的实例逻辑  @Component注解表面这个类会作为一个组件类，并且告诉spring要为这个类创建一个bean放在容器中. 两个的差别 相同点：两者的结果都是为spring容器注册Bean.  不同点：@Component 通常是通过类路径扫描来自动侦测以及自动装配到S">
-<meta property="og:type" content="article">
-<meta property="og:title" content="注解Bean和Component的区别">
-<meta property="og:url" content="http://example.com/2021/05/15/%E6%B3%A8%E8%A7%A3Bean%E5%92%8CComponent%E7%9A%84%E5%8C%BA%E5%88%AB/index.html">
+  <meta name="description" content="博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="博客">
+<meta property="og:url" content="http://example.com/categories/index.html">
 <meta property="og:site_name" content="博客">
-<meta property="og:description" content="两者作用 @Bean注解在方法上,告诉spring这个方法会放回一个对象,将这个对应托管在容器中.在方法中会有该Bean对象产生的实例逻辑  @Component注解表面这个类会作为一个组件类，并且告诉spring要为这个类创建一个bean放在容器中. 两个的差别 相同点：两者的结果都是为spring容器注册Bean.  不同点：@Component 通常是通过类路径扫描来自动侦测以及自动装配到S">
+<meta property="og:description" content="博客">
 <meta property="og:locale">
-<meta property="article:published_time" content="2021-05-15T07:31:40.000Z">
-<meta property="article:modified_time" content="2021-07-14T01:13:23.930Z">
+<meta property="article:published_time" content="2021-07-15T08:49:06.110Z">
+<meta property="article:modified_time" content="2021-07-15T08:49:06.110Z">
 <meta property="article:author" content="cw">
-<meta property="article:tag" content="学习">
-<meta property="article:tag" content="spring">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2021/05/15/%E6%B3%A8%E8%A7%A3Bean%E5%92%8CComponent%E7%9A%84%E5%8C%BA%E5%88%AB/">
+<link rel="canonical" href="http://example.com/categories/">
 
 
 <script class="page-configurations">
@@ -44,12 +42,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : true,
+    isPost : false,
     lang   : 'zh-Hans'
   };
 </script>
 
-  <title>注解Bean和Component的区别 | 博客</title>
+  <title>分类 | 博客
+</title>
   
 
 
@@ -186,7 +185,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -198,7 +197,6 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%A4%E8%80%85%E4%BD%9C%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text">两者作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%A4%E4%B8%AA%E7%9A%84%E5%B7%AE%E5%88%AB"><span class="nav-number">2.</span> <span class="nav-text">两个的差别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%A4%E8%80%85%E7%9A%84%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5"><span class="nav-number">3.</span> <span class="nav-text">两者的使用情况</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -256,103 +254,51 @@
 
       <div class="main-inner">
         
+  
+  
 
-        <div class="content post posts-expand">
+        <div class="content page posts-expand">
           
 
     
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/15/%E6%B3%A8%E8%A7%A3Bean%E5%92%8CComponent%E7%9A%84%E5%8C%BA%E5%88%AB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-      <meta itemprop="name" content="cw">
-      <meta itemprop="description" content="博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="博客">
-    </span>
-
     
+    
+    <div class="post-block" lang="zh-Hans">
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          注解Bean和Component的区别
-        </h1>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+<h1 class="post-title" itemprop="name headline">
+</h1>
 
-              <time title="创建时间：2021-05-15 15:31:40" itemprop="dateCreated datePublished" datetime="2021-05-15T15:31:40+08:00">2021-05-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-14 09:13:23" itemprop="dateModified" datetime="2021-07-14T09:13:23+08:00">2021-07-14</time>
-              </span>
+<div class="post-meta">
+  
 
-          
+</div>
 
-        </div>
-      </header>
+</header>
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-        <h2 id="两者作用"><a href="#两者作用" class="headerlink" title="两者作用"></a>两者作用</h2><p> @Bean注解在方法上,告诉spring这个方法会放回一个对象,将这个对应托管在容器中.在方法中会有该Bean对象产生的实例逻辑</p>
-<p> @Component注解表面这个类会作为一个组件类，并且告诉spring要为这个类创建一个bean放在容器中.</p>
-<h2 id="两个的差别"><a href="#两个的差别" class="headerlink" title="两个的差别"></a>两个的差别</h2><p> 相同点：两者的结果都是为spring容器注册Bean.</p>
-<p> 不同点：@Component 通常是通过类路径扫描来自动侦测以及自动装配到Spring容器中。它与Bean之间为隐式关系即每个类就是一个bean。</p>
-<span id="more"></span>
-
-<p>　　@Bean 注解通常是我们在标有该注解的方法中定义产生这个bean的逻辑。它是显式声明单个bean，而不是让Spring像上面那样自动执行它。它将bean的声明与类定义分离，并允许您精确地创建和配置bean</p>
-<p> @Component （@Controller @Service @Respository）作用于类上，只有在我们的SpringBoot应用程序启用了组件扫描并且包含了被注解的类时才有效。通过组件扫描，Spring将扫描整个类路径，并将所有@Component注释类添加到Spring Context，这里有的不足就是会把整个类当成bean注册到spring 容器上，如果这个类中并不是所有方法都需要注册为bean的话，会出现不需要的方法都注册成为bean，这时候必须确保这些不需要的方法也能注册为bean或者在扫描中加filter 过滤这些不需要的bean,否者spring将无法成功启动。</p>
-<p>@Bean相对来说就更加灵活了，它可以独立加在方法上，按需注册到spring容器，而且如果你要用到第三方类库里面某个方法的时候，你就只能用@Bean把这个方法注册到spring容器，因为用@Component你需要配置组件扫描到这个第三方类路径而且还要在别人源代码加上这个注解，很明显是不现实的。</p>
-<h2 id="两者的使用情况"><a href="#两者的使用情况" class="headerlink" title="两者的使用情况"></a>两者的使用情况</h2><p> @Bean 当你没有源代码的时候，想要使用该组件，就可以用@Bean注解，放返回对应的对象到容器中。又比如，你所需要的对象，必须需要其他的一些依赖进行注入的时候，或者一些其他的参数来进行注入的时候，就可以使用@Bean注解的方式，来进行获取组件。</p>
-<p> @Configuration的情况，当你自己创建一个类,想把此类作为组件添加进去,就可以在该类上添加@Component,而不用在另外的配置类上添加@Bean.</p>
-
-    </div>
-
-    
-    
-    
-
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag"><i class="fa fa-tag"></i> 学习</a>
-              <a href="/tags/spring/" rel="tag"><i class="fa fa-tag"></i> spring</a>
+      
+      
+      
+      <div class="post-body">
+          <div class="category-all-page">
+            <div class="category-all-title">
+              目前共计 1 个分类
+            </div>
+            <div class="category-all">
+              <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/">Java基础学习</a><span class="category-list-count">1</span></li></ul>
+            </div>
           </div>
-
         
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2021/05/15/springboot/" rel="prev" title="springboot">
-      <i class="fa fa-chevron-left"></i> springboot
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/05/25/mybatis-plus/" rel="next" title="mybatis-plus">
-      mybatis-plus <i class="fa fa-chevron-right"></i>
-    </a></div>
+      </div>
+      
+      
+      
     </div>
-      </footer>
     
-  </article>
-  
-  
-  
 
+    
+    
+    
 
 
         </div>
