@@ -74,7 +74,7 @@ categories: Java基础学习
 - 主要目的:协同网络中的计算机资源,服务模式,进程间的数据共享
 - 常见的:FTP.SMTP,HTTP
 
-### Socket TCP小案例
+### Socket 小案例
 
 在本次案例中:
 
@@ -313,6 +313,349 @@ public class Client {
   - 255.255.255.255为受限广播地址
   - C网广播地址一般为xxx.xxx.xxx.255
   - D类地址为多播预留
+  - .....
+
+### UDP案例-局域网搜索案例
+
+- UDP接受消息并回送功能实现.
+- UDP局域网广播发送实现.
+- UDP局域网回送消息实现.
+
+#### UDP发送与监听小案例
+
+服务提供者:
+
+```java
+public class UDPProvider {
+    public static void main(String[] args) throws IOException {
+        System.out.println("UDP服务正在开启!");
+        //作为接收者(socket中的服务器),指定一个端口用于数据接收
+        DatagramSocket ds = new DatagramSocket(20000);
+        //构建接受实体
+        byte[] bytes = new byte[512];
+        DatagramPacket dp = new DatagramPacket(bytes, bytes.length);
+        //接收传过来的信息
+        ds.receive(dp);
+        //打印发送者的信息
+        //ip地址
+        String ip = dp.getAddress().getHostAddress();
+        //端口号
+        int prot = dp.getPort();
+        //数据长度
+        int dataLen = dp.getLength();
+        //数据信息
+        String data = new String(dp.getData(), 0, dataLen);
+        System.out.println("发送者的地址端口号 : " + ip
+                + " : " + prot + ";信息为 : " + data);
+        //构建一份回送数据
+        String responseData = "接收方已经接收到了!";
+        byte[] responseBytes = responseData.getBytes(StandardCharsets.UTF_8);
+        //直接根据发送者构建一份回送信息
+        DatagramPacket responsePacket = new DatagramPacket(responseBytes, responseBytes.length
+                , dp.getAddress(), dp.getPort());
+
+        ds.send(responsePacket);
+        System.out.println("UDP提供者服务已经完成!");
+        ds.close();
+    }
+}
+```
+
+搜索方:
+
+```java
+public class UDPSearcher {
+    public static void main(String[] args) throws IOException {
+        System.out.println("UDP搜索服务正在开启!");
+        //搜索方(TCP的客户端),无需提供端口,让系统自己分配端口
+        DatagramSocket ds = new DatagramSocket();
+        //先准备发送数据过去
+        //构建一份请求数据
+        String requestData = "发送方发送数据了!";
+        byte[] requestBytes = requestData.getBytes(StandardCharsets.UTF_8);
+        //直接构建packet
+        DatagramPacket requestPacket = new DatagramPacket(requestBytes, requestBytes.length);
+        requestPacket.setAddress(InetAddress.getLocalHost());
+        requestPacket.setPort(20000);
+        ds.send(requestPacket);
+        //构建接受实体
+        byte[] bytes = new byte[512];
+        DatagramPacket dp = new DatagramPacket(bytes, bytes.length);
+        //接收传过来的信息
+        ds.receive(dp);
+        //打印发送者的信息
+        //ip地址
+        String ip = dp.getAddress().getHostAddress();
+        //端口号
+        int prot = dp.getPort();
+        //数据长度
+        int dataLen = dp.getLength();
+        //数据信息
+        String data = new String(dp.getData(), 0, dataLen);
+        System.out.println("服务的地址端口号 : " + ip
+                + " : " + prot + ";信息为 : " + data);
+        System.out.println("UDP搜索已经完成!");
+        ds.close();
+    }
+}
+```
+
+如果要是实现广播局域网搜索的功能,需要具备的功能和知识点:
+
+服务提供者:
+
+```java
+public class UDPProvider {
+    public static void main(String[] args) throws IOException {
+        String sn = UUID.randomUUID().toString();
+        Provider provider = new Provider(sn);
+        provider.start();
+        //默认从键盘上输入则认为关闭
+        System.in.read();
+        provider.exit();
+    }
+
+    private static class Provider extends Thread {
+        private final String sn;
+        private boolean done;
+        private DatagramSocket ds = null;
+
+        public Provider(String sn) {
+            this.sn = sn;
+        }
+
+        @Override
+        public void run() {
+            try {
+                System.out.println("UDP服务正在开启!");
+                //作为接收者(socket中的服务器),指定一个端口用于数据接收
+                ds = new DatagramSocket(20000);
+                while (!done) {
+                    //构建接受实体
+                    byte[] bytes = new byte[512];
+                    DatagramPacket dp = new DatagramPacket(bytes, bytes.length);
+                    //接收传过来的信息
+                    ds.receive(dp);
+                    //打印发送者的信息
+                    String ip = dp.getAddress().getHostAddress();
+                    int prot = dp.getPort();
+                    int dataLen = dp.getLength();
+                    //数据信息
+                    String data = new String(dp.getData(), 0, dataLen);
+                    System.out.println("发送者的地址端口号 : " + ip + " : " + prot + ";信息为 : " + data);
+                    int responsePort = MessageCreator.parsePort(data);
+                    if (responsePort != -1) {
+                        //构建一份回送数据
+                        String responseData = MessageCreator.buildWithSn(sn);
+                        byte[] responseBytes = responseData.getBytes(StandardCharsets.UTF_8);
+                        //直接根据发送者构建一份回送信息
+                        DatagramPacket responsePacket = new DatagramPacket(responseBytes, responseBytes.length
+                                , dp.getAddress(), responsePort);
+
+                        ds.send(responsePacket);
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("提供者异常退出!");
+            } finally {
+                close();
+            }
+            System.out.println("UDP提供者服务已经完成!");
+        }
+        private void close() {
+            if (ds != null) {
+                ds.close();
+            }
+        }
+        void exit() {
+            done = true;
+            close();
+        }
+    }
+}
+```
+
+exist原理: 本身done=true并不能使服务停止,当启动服务后,将在`receive`进行阻塞,exit方法调用 ds.close,使得ds关闭,然后造成异常然后退出服务的
+
+搜索者:
+
+```java
+public class UDPSearcher {
+    private static final int LISTEN_PORT = 30000;
+
+    public static void main(String[] args) throws IOException {
+        Listener listener=listen();
+        sendBroadcast();
+        System.in.read();
+        List<Device> devices= listener.getDeviceAndClose();
+        devices.forEach(d-> System.out.println("Device -> " +devices.toString()));
+        System.out.println("搜索已经完成!");
+    }
+    private static Listener listen() {
+        System.out.println("开始监听!");
+        CountDownLatch countDownLatch=new CountDownLatch(1);
+        Listener listener=new Listener(LISTEN_PORT,countDownLatch);
+        listener.start();
+        return listener;
+    }
+    private static void sendBroadcast() throws IOException {
+        System.out.println("UDP搜索服务正在开启!");
+        //搜索方,无需提供端口,让系统自己分配端口
+        DatagramSocket ds = new DatagramSocket();
+        //构建一份请求数据
+        String requestData = MessageCreator.buildWithPort(LISTEN_PORT);
+        byte[] requestBytes = requestData.getBytes(StandardCharsets.UTF_8);
+        //直接构建packet
+        DatagramPacket requestPacket = new DatagramPacket(requestBytes, requestBytes.length);
+        //20000端口 ,广播地址255.255.255.255
+        requestPacket.setAddress(InetAddress.getByName("255.255.255.255"));
+        requestPacket.setPort(20000);
+        ds.send(requestPacket);
+        ds.close();
+    }
+    private static class Device {
+        final int port;
+        final String ip;
+        final String sn;
+        public Device(int port, String ip, String sn) {
+            this.port = port;
+            this.ip = ip;
+            this.sn = sn;
+        }
+        @Override
+        public String toString() {
+            return "Device{" +
+                    "port=" + port +
+                    ", ip='" + ip + '\'' +
+                    ", sn='" + sn + '\'' +
+                    '}';
+        }
+    }
+    private static class Listener extends Thread {
+        private final int listenPort;
+        private final CountDownLatch countDownLatch;
+        private final List<Device> devices = new ArrayList<>();
+        private boolean done = false;
+        private DatagramSocket ds = null;
+
+        public Listener(int listenPort, CountDownLatch countDownLatch) {
+            this.listenPort = listenPort;
+            this.countDownLatch = countDownLatch;
+        }
+        @Override
+        public void run() {
+            //通知已启用
+            countDownLatch.countDown();
+            try {
+                ds=new DatagramSocket(listenPort);
+                while (!done){
+                    //构建接受实体
+                    byte[] bytes = new byte[512];
+                    DatagramPacket dp = new DatagramPacket(bytes, bytes.length);
+                    //接收传过来的信息
+                    ds.receive(dp);
+                    String ip = dp.getAddress().getHostAddress();
+                    int prot = dp.getPort();
+                    int dataLen = dp.getLength();
+                    String data = new String(dp.getData(), 0, dataLen);
+                    System.out.println("服务的地址端口号 : " + ip
+                            + " : " + prot + ";信息为 : " + data);
+                    String sn= MessageCreator.parseSn(data);
+                    if (sn!=null){
+                        Device device=new Device(prot,ip,sn);
+                        devices.add(device);
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("异常!");
+            } finally {
+                close();
+            }
+            System.out.println("监听结束!");
+        }
+        private void close() {
+            if (ds != null) ds.close();
+            ds = null;
+        }
+        private List<Device> getDeviceAndClose() {
+            this.done = true;
+            close();
+            return devices;
+        }
+    }
+}
+```
+
+工具类:做一个简单的port和sn的封装
+
+```java
+public class MessageCreator {
+    //接收者的口令
+    private static final String SN_HEADER = "收到暗号,我是SN : ";
+    //发送者的口令
+    private static final String PORT_HEADER = "这是发送者的暗号,请回端口(PORT):";
+    //发送暗号的端口号
+    public static String buildWithPort(int port) {
+        return PORT_HEADER+port;
+    }
+    //解析端口号
+    public static int parsePort(String data){
+        if (data.startsWith(PORT_HEADER)){
+            return Integer.parseInt(data.substring(PORT_HEADER.length())); }
+        return  -1;
+    }
+    //sn与上面一致
+    public  static String buildWithSn(String sn){ return SN_HEADER+sn; }
+    public static  String parseSn(String data){
+        if (data.startsWith(SN_HEADER)) return data.substring(SN_HEADER.length());
+        return null;
+    }
+}
+```
+
+### Socket-TCP快速入门
+
+#### TCP是什么
+
+- TCP是传输控制协议;是一种面向连接的,可靠的,基于字节流的传输层通信协议.
+- 与UDP一样完成第四层传输层所指定的功能与职责
+- TCP的机制
+  - 三次握手,四次挥手
+  - 具有校验机制,可靠,数据传输的稳定性
+
+#### TCP链接,传输流程
+
+- 客户端连接经过三次握手连接到服务器端
+- 服务器端经过三次握手连接成功之后才会进入到后续的传输
+- 后续两端就会发送属于与回送数据.
+- TCP数据发送中会有一些额外的数据进行发送,如果发送为100K,发送完了之后会有大于100K是正常的,两端之间会不断的进行数据校验等
+
+![image-20210718215504449](Java网络编程初始/image-20210718215504449.png)
+
+#### TCP能做什么
+
+- 聊天消息传输,推送
+- 单人语音,视频聊天
+- 几乎UDP能做的都能做,但是需要考虑复杂性,性能问题
+- 限制: 无法进行广播,多播.
+
+#### TCP核心API讲解
+
+- socket(): 创建一个Socket(客户端)
+  - serverSock() 服务器端,监听来自客户端的套接字.
+- bind(): 绑定一个Socket到一个本地地址和端口上
+- connect():连接到远程套接字
+- accept():服务器端独有的方法,接受一个新的连接,当serverSocket调用此方法,服务器端会进入阻塞状态,直到有客户端连接进来.默认时间无限长.
+- write(): 把数据写入到Socket输出流中
+- read(): 从Socket输如流读取数据.
+
+### TCP连接可靠性
+
+#### 连接可靠性--三次握手
+
+#### 随机值的必要性
+
+#### 连接可靠性--四次挥手
 
 
 
