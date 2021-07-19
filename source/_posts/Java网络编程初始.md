@@ -155,7 +155,7 @@ public class Client {
         //超时时间
         socket.setSoTimeout(3000);
         //连接本地地址,端口号为2000,超时时间3s
-        socket.connect(new InetSocketAddress(Inet4Address.getLocalHost(), 2000), 2000);
+        socket.connect(new InetSocketAddress(Inet4Address.getLocalHost(), 3000), 2000);
         System.out.println("已向服务器发起连接!等待后续!");
         System.out.println("客户端信息 : " + socket.getLocalAddress() + "端口号 : " + socket.getLocalPort());
         System.out.println("服务器信息 : " + socket.getInetAddress() + "端口号 : " + socket.getPort());
@@ -653,8 +653,6 @@ public class MessageCreator {
 
 #### 连接可靠性--三次握手
 
-​	
-
 #### 随机值的必要性
 
 #### 连接可靠性--四次挥手
@@ -662,8 +660,27 @@ public class MessageCreator {
 ### TCP传输可靠性
 
 - **排序,顺序发送,顺序组装**,当进行一条数据发送的时候,首先TCP会先将这个数据拆分成不同的片段,然后把片段进行排序,将排好序的片段按照顺序组装之后发送,保证了传输的有序性.
+  - 为什么要进行拆分数据,因为如果有一个大的数据包传输过程中出现了问题,那么一个大的数据包都被浪费丢弃掉了,前面传输的数据都是无效的,又要从零开始进行传输,就会浪费比较多的流量.
+- **丢弃，超时：**一旦在整个发送过程中，数据片到达的时间超时,那么TCP客户端其实是能够收到数据被丢弃或者超时,一旦客户端收到这样的消息,那么客户端就会重新的进行发送. 
+- **重发机制-定时器:**如果在服务端收到信息的时候,它会用定时器,定时的回送它已经收到的数据片,客户端一样,当我们在一定的定时器时间范围内没有收到服务器端回送的数据的时候,会认为是没有送达到服务器端,会重新将数据发送一遍,一定要是被允许发送到服务器端的,这样就保证了TCP传输的可靠性.
 
+示意图例子:
 
+![image-20210719211149184](Java网络编程初始/image-20210719211149184.png)
+
+### TCP案例
+
+#### TCP传输初始化配置
+
+- 初始化服务器TCP链接监听
+- 初始化客户端发起链接操作
+- 服务器Socket链接处理
+
+#### 客户端与服务器交互
+
+- 客户端发送简单字节
+- 服务器接受客户端发送数据
+- 服务器回送消息,客户端识别并回送消息
 
 
 
