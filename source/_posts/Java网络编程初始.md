@@ -682,7 +682,73 @@ public class MessageCreator {
 - 服务器接受客户端发送数据
 - 服务器回送消息,客户端识别并回送消息
 
+就是在Socket案例中进行Socket的封装和初始化Socket
 
+```java
+public static Socket creatSocket() throws IOException {
+        /*//无代理模式,等效于空构造函数.
+        Socket socket=new Socket(Proxy.NO_PROXY);
+        //新建一份具有HTTP代理的套接字,传输数据将通过www.baidu.com:8080端口转发
+        Proxy proxy=new Proxy(Proxy.Type.HTTP,new InetSocketAddress(Inet4Address.getByName("www.baidu.com"),8800));
+        socket=new Socket(proxy);
+        //新建一个套接字,并且直接链接到本地20000的服务器上
+        socket=new Socket("localhost",PORT);
+        //新建一个套接字,并且直接链接到本地20000的服务器上,并且绑定本地20001端口上
+        socket=new Socket("localhost",PORT,Inet4Address.getLocalHost(),LOCAL_PORT);
+        */
+        Socket socket = new Socket();
+        //绑定到本地20001端口
+        socket.bind(new InetSocketAddress(Inet4Address.getLocalHost(), LOCAL_PORT));
+        //socket.connect(new InetSocketAddress(Inet4Address.getLocalHost(),LOCAL_PORT));
+        return socket;
+    }
+
+    private static void initSocket(Socket socket) throws SocketException {
+        //设置读取超时时间为2秒
+        socket.setSoTimeout(2000);
+        //是否复用为完全关闭的Socket地址,对于指定bind操作后的套接字有效
+        socket.setReuseAddress(true);
+        //是否开启Nagle算法 :
+        socket.setTcpNoDelay(false);
+        //是否需要在长时无数据响应时发送确认数据（类似心跳包)，时间大约为2小时
+        socket.setKeepAlive(true);
+        //对于close关闭操作行为进行怎样的处理;默认为false，0
+        // false、0:默认情况，关闭时立即返回，底层系统接管输出流，将缓冲区内的数据发送完成
+        // true、0∶关闭时立即返回，缓冲区数据抛弃，直接发送RST结束命令到对方，并无需经过2MSL等待l/ true、200:关闭时最长阻塞200毫秒，随后按第二情况处理
+        socket.setSoLinger(true, 20);
+        //是否让紧急数据内敛，默认false;紧急数据通过socket.sendUrgentData(1);发送socket.set00BInline(true);
+        //设置接收发送缓冲器大小
+        socket.setReceiveBufferSize(64 * 1024 * 1024);
+        socket.setSendBufferSize(64 * 1024 * 1024);
+        //设置性能参数:短链接，延迟，带宽的相对重要性
+        socket.setPerformancePreferences( 1, 1, 1);
+    }
+```
+
+### UDP辅助TCP实现点对点传输案例
+
+- TCP: 基于连接上的传输,更加的精确,更好的数据传输的稳定性与健壮性,除开异常,一定能保证数据能够送达
+- UDP: 可以作为广播发送,可以作为搜索,更专注于速度,是基于报文上传输的
+
+这个案例就是将TCP与UDP结合起来使用,现实生活中有这么一个场景,你知道服务器的ip地址和端口,那么可以通过TCP进行与服务器的连接,但是假如在一个局域网中,不知道你的服务器的ip,你知道的仅仅是一个公用的服务器的端口,那么这样情况下,怎么实现TCP的连接?
+
+- 要想实现TCP的连接,点对点的连接,一定要知道TCP服务器的ip地址和端口
+- 可以通过UDP的一个搜索,当我们服务器与我们所有的客户端约定了搜索的格式之后,可以在客户端发起UDP广播,那么在广播的接收者(服务器),服务器会收到广播之后会判断一下,收到的广播是否为自己需要处理的,如果是,那么服务器会回送到对应的端口和地址上去,当回送的时候,客户端就会收到UDP的包,UDP的包中就包含了端口号以及IP地址,还有服务器回送的信息.
+- 然后使用TCP来进行连接即可.
+
+#### UDP搜索IP与端口
+
+- 构建基础口令消息
+  - 如果要进行UDP的一个交互,往往要约定一个公共的一种数据格式.
+  - 如果不加上自己定义的数据格式,那么任何连接都能连接上服务器,就会暴露自己服务器的信息
+- 局域网广播口令消息(指定端口)
+- 接受指定端口回送细信息(得到回送端IP,port)
+
+#### UDP搜索取消实现
+
+- 异步线程接收回送消息
+- 异步线程等待完成(定时)
+- 关闭等待-中止线程等待
 
 
 
